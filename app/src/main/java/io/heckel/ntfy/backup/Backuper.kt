@@ -69,7 +69,7 @@ class Backuper(val context: Context) {
             repository.setDarkMode(settings.darkMode)
         }
         if (settings.connectionProtocol != null) {
-            repository.setConnectionProtocol(settings.connectionProtocol)
+            repository.setConnectionProtocol()
         }
         if (settings.broadcastEnabled != null) {
             repository.setBroadcastEnabled(settings.broadcastEnabled)
@@ -337,7 +337,7 @@ class Backuper(val context: Context) {
     companion object {
         private const val FILE_MAGIC = "ntfy2586"
         private const val FILE_VERSION = 1
-        private const val TAG = "NtfyExporter"
+        private const val TAG = "PonypushExporter"
     }
 }
 

@@ -544,7 +544,7 @@ class DetailAdapter(private val activity: Activity, private val lifecycleScope: 
     }
 
     companion object {
-        const val TAG = "NtfyDetailAdapter"
+        const val TAG = "PonypushDetailAdapter"
         const val REQUEST_CODE_WRITE_STORAGE_PERMISSION_FOR_DOWNLOAD = 9876
         const val IMAGE_PREVIEW_MAX_BYTES = 5 * 1024 * 1024 // Too large images crash the app with "Canvas: trying to draw too large(233280000bytes) bitmap."
     }

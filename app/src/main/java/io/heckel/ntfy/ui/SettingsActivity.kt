@@ -373,8 +373,8 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
                 when (v) {
                     EXPORT_LOGS_COPY_ORIGINAL -> copyLogsToClipboard(scrub = false)
                     EXPORT_LOGS_COPY_SCRUBBED -> copyLogsToClipboard(scrub = true)
-                    EXPORT_LOGS_UPLOAD_ORIGINAL -> uploadLogsToNopaste(scrub = false)
-                    EXPORT_LOGS_UPLOAD_SCRUBBED -> uploadLogsToNopaste(scrub = true)
+                    EXPORT_LOGS_UPLOAD_ORIGINAL -> copyLogsToClipboard(scrub = false)
+                    EXPORT_LOGS_UPLOAD_SCRUBBED -> copyLogsToClipboard(scrub = true)
                 }
                 false
             }
@@ -511,7 +511,7 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
             connectionProtocol?.preferenceDataStore = object : PreferenceDataStore() {
                 override fun putString(key: String?, value: String?) {
                     val proto = value ?: repository.getConnectionProtocol()
-                    repository.setConnectionProtocol(proto)
+                    repository.setConnectionProtocol()
                     restartService()
                 }
                 override fun getString(key: String?, defValue: String?): String {
@@ -528,12 +528,19 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
             // Version
             val versionPrefId = context?.getString(R.string.settings_about_version_key) ?: return
             val versionPref: Preference? = findPreference(versionPrefId)
-            val version = getString(R.string.settings_about_version_format, BuildConfig.VERSION_NAME, BuildConfig.FLAVOR)
+
+            val type = if (BuildConfig.FIREBASE_AVAILABLE) {
+                "Firebase Cloud Messaging"
+            } else {
+                "WebSocket"
+            }
+
+            val version = "Ponypush " + BuildConfig.VERSION_NAME + " (ntfy " + BuildConfig.NTFY_VERSION + ", " + type + ")"
             versionPref?.summary = version
             versionPref?.onPreferenceClickListener = OnPreferenceClickListener {
                 val context = context ?: return@OnPreferenceClickListener false
                 val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                val clip = ClipData.newPlainText("ntfy version", version)
+                val clip = ClipData.newPlainText("Ponypush version", version)
                 clipboard.setPrimaryClip(clip)
                 Toast
                     .makeText(context, getString(R.string.settings_about_version_copied_to_clipboard_message), Toast.LENGTH_LONG)
@@ -790,7 +797,7 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
     }
 
     companion object {
-        private const val TAG = "NtfySettingsActivity"
+        private const val TAG = "PonypushSettingsActivity"
         private const val TITLE_TAG = "title"
         private const val REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION_FOR_AUTO_DOWNLOAD = 2586
         private const val AUTO_DOWNLOAD_SELECTION_NOT_SET = -99L

@@ -13,12 +13,12 @@
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/teal_light</item>
         <item name="colorAccent">@color/teal_light</item> <!-- checkboxes, text fields -->
-        <item name="android:colorBackground">@color/black_900</item> <!-- background -->
-        <item name="android:statusBarColor">@color/black_900</item>
-        <item name="actionModeBackground">@color/black_900</item>
+        <item name="android:colorBackground">@color/black</item> <!-- background -->
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="actionModeBackground">@color/black</item>
 
         <!-- Action bar background & text color -->
-        <item name="colorSurface">@color/black_800b</item>
+        <item name="colorSurface">@color/black</item>
         <item name="colorOnSurface">@color/white</item>
     </style>
 
@@ -32,7 +32,7 @@
     </style>
 
     <style name="CardView" parent="@style/Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">@color/black_800b</item>
+        <item name="cardBackgroundColor">@color/black</item>
     </style>
 
     <style name="CardViewBackground">

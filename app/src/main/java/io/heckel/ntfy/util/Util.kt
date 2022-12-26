@@ -65,7 +65,7 @@ fun subscriptionTopicShortUrl(subscription: Subscription) : String {
 }
 
 fun displayName(subscription: Subscription) : String {
-    return subscription.displayName ?: subscriptionTopicShortUrl(subscription)
+    return subscription.displayName ?: subscription.topic
 }
 
 fun shortUrl(url: String) = url

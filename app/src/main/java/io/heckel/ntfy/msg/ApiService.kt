@@ -169,8 +169,8 @@ class ApiService {
     class EntityTooLargeException : Exception()
 
     companion object {
-        val USER_AGENT = "ntfy/${BuildConfig.VERSION_NAME} (${BuildConfig.FLAVOR}; Android ${Build.VERSION.RELEASE}; SDK ${Build.VERSION.SDK_INT})"
-        private const val TAG = "NtfyApiService"
+        val USER_AGENT = "ponypush/${BuildConfig.VERSION_NAME} (Android ${Build.VERSION.RELEASE}; SDK ${Build.VERSION.SDK_INT})"
+        private const val TAG = "PonypushApiService"
 
         // These constants have corresponding values in the server codebase!
         const val CONTROL_TOPIC = "~control"

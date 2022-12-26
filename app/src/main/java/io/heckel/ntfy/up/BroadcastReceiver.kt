@@ -133,7 +133,7 @@ class BroadcastReceiver : android.content.BroadcastReceiver() {
     }
 
     companion object {
-        private const val TAG = "NtfyUpBroadcastRecv"
+        private const val TAG = "PonypushUpBroadcastRecv"
         private const val UP_PREFIX = "up"
         private const val TOPIC_RANDOM_ID_LENGTH = 12
 

@@ -63,7 +63,7 @@ class SubscriberServiceManager(private val context: Context) {
     }
 
     companion object {
-        const val TAG = "NtfySubscriberMgr"
+        const val TAG = "PonypushSubscriberMgr"
         const val WORK_NAME_ONCE = "ServiceStartWorkerOnce"
 
         fun refresh(context: Context) {

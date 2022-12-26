@@ -52,6 +52,6 @@ class Distributor(val context: Context) {
     }
 
     companion object {
-        private const val TAG = "NtfyUpDistributor"
+        private const val TAG = "PonypushUpDistributor"
     }
 }

@@ -162,7 +162,7 @@ class DownloadIconWorker(private val context: Context, params: WorkerParameters)
         const val MAX_CACHE_MILLIS = 1000*60*60*24 // 24 hours
         const val ICON_CACHE_DIR = "icons"
 
-        private const val TAG = "NtfyIconDownload"
+        private const val TAG = "PonypushIconDownload"
         private const val BUFFER_SIZE = 8 * 1024
     }
 }

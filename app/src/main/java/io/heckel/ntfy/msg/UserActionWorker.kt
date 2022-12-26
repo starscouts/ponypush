@@ -110,6 +110,6 @@ class UserActionWorker(private val context: Context, params: WorkerParameters) :
         const val INPUT_DATA_ACTION_ID = "actionId"
 
         private const val DEFAULT_HTTP_ACTION_METHOD = "POST" // Cannot be changed without changing the contract
-        private const val TAG = "NtfyUserActWrk"
+        private const val TAG = "PonypushUserActWrk"
     }
 }

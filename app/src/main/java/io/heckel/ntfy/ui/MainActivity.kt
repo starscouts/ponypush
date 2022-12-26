@@ -175,27 +175,6 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback, AddFragment.Subsc
             }
         }
 
-        // WebSocket banner
-        val wsBanner = findViewById<View>(R.id.main_banner_websocket) // Banner visibility is toggled in onResume()
-        val wsText = findViewById<TextView>(R.id.main_banner_websocket_text)
-        val wsDismissButton = findViewById<Button>(R.id.main_banner_websocket_dontaskagain)
-        val wsRemindButton = findViewById<Button>(R.id.main_banner_websocket_remind_later)
-        val wsEnableButton = findViewById<Button>(R.id.main_banner_websocket_enable)
-        wsText.movementMethod = LinkMovementMethod.getInstance() // Make links clickable
-        wsDismissButton.setOnClickListener {
-            wsBanner.visibility = View.GONE
-            repository.setWebSocketRemindTime(Repository.WEBSOCKET_REMIND_TIME_NEVER)
-        }
-        wsRemindButton.setOnClickListener {
-            wsBanner.visibility = View.GONE
-            repository.setWebSocketRemindTime(System.currentTimeMillis() + ONE_DAY_MILLIS)
-        }
-        wsEnableButton.setOnClickListener {
-            repository.setConnectionProtocol(Repository.CONNECTION_PROTOCOL_WS)
-            SubscriberServiceManager(this).restart()
-            wsBanner.visibility = View.GONE
-        }
-
         // Create notification channels right away, so we can configure them immediately after installing the app
         dispatcher?.init()
 
@@ -349,10 +328,6 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback, AddFragment.Subsc
         }
         val mutedUntilSeconds = repository.getGlobalMutedUntil()
         runOnUiThread {
-            // Show/hide in-app rate widget
-            val rateAppItem = menu.findItem(R.id.main_menu_rate)
-            rateAppItem.isVisible = BuildConfig.RATE_APP_AVAILABLE
-
             // Pause notification icons
             val notificationsEnabledItem = menu.findItem(R.id.main_menu_notifications_enabled)
             val notificationsDisabledUntilItem = menu.findItem(R.id.main_menu_notifications_disabled_until)
@@ -383,26 +358,6 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback, AddFragment.Subsc
             }
             R.id.main_menu_settings -> {
                 startActivity(Intent(this, SettingsActivity::class.java))
-                true
-            }
-            R.id.main_menu_report_bug -> {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.main_menu_report_bug_url))))
-                true
-            }
-            R.id.main_menu_rate -> {
-                try {
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")))
-                } catch (e: ActivityNotFoundException) {
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
-                }
-                true
-            }
-            R.id.main_menu_donate -> {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.main_menu_donate_url))))
-                true
-            }
-            R.id.main_menu_docs -> {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.main_menu_docs_url))))
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -690,7 +645,7 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback, AddFragment.Subsc
     }
 
     companion object {
-        const val TAG = "NtfyMainActivity"
+        const val TAG = "PonypushMainActivity"
         const val EXTRA_SUBSCRIPTION_ID = "subscriptionId"
         const val EXTRA_SUBSCRIPTION_BASE_URL = "subscriptionBaseUrl"
         const val EXTRA_SUBSCRIPTION_TOPIC = "subscriptionTopic"

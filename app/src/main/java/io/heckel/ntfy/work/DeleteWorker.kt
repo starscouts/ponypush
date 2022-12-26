@@ -133,8 +133,8 @@ class DeleteWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx
 
     companion object {
         const val VERSION = BuildConfig.VERSION_CODE
-        const val TAG = "NtfyDeleteWorker"
-        const val WORK_NAME_PERIODIC_ALL = "NtfyDeleteWorkerPeriodic" // Do not change
+        const val TAG = "PonypushDeleteWorker"
+        const val WORK_NAME_PERIODIC_ALL = "PonypushDeleteWorkerPeriodic" // Do not change
 
         private const val ONE_DAY_SECONDS = 24 * 60 * 60L
         const val HARD_DELETE_AFTER_SECONDS = 4 * 30 * ONE_DAY_SECONDS // 4 months

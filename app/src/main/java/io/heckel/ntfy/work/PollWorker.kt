@@ -66,9 +66,9 @@ class PollWorker(ctx: Context, params: WorkerParameters) : CoroutineWorker(ctx, 
 
     companion object {
         const val VERSION =  BuildConfig.VERSION_CODE
-        const val TAG = "NtfyPollWorker"
-        const val WORK_NAME_PERIODIC_ALL = "NtfyPollWorkerPeriodic" // Do not change
-        const val WORK_NAME_ONCE_SINGE_PREFIX = "NtfyPollWorkerSingle" // e.g. NtfyPollWorkerSingle_https://ntfy.sh_mytopic
+        const val TAG = "PonypushPollWorker"
+        const val WORK_NAME_PERIODIC_ALL = "PonypushPollWorkerPeriodic" // Do not change
+        const val WORK_NAME_ONCE_SINGE_PREFIX = "PonypushPollWorkerSingle" // e.g. NtfyPollWorkerSingle_https://ntfy.sh_mytopic
         const val INPUT_DATA_BASE_URL = "baseUrl"
         const val INPUT_DATA_TOPIC = "topic"
     }

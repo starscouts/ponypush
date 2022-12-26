@@ -107,6 +107,6 @@ class NotificationDispatcher(val context: Context, val repository: Repository) {
     }
 
     companion object {
-        private const val TAG = "NtfyNotifDispatch"
+        private const val TAG = "PonypushNotifDispatch"
     }
 }

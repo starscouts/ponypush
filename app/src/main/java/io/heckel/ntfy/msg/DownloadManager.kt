@@ -14,7 +14,7 @@ import io.heckel.ntfy.util.Log
  * in a doze state and Internet may not be available. It's also best practice, apparently.
  */
 object DownloadManager {
-    private const val TAG = "NtfyDownloadManager"
+    private const val TAG = "PonypushDownloadManager"
     private const val DOWNLOAD_WORK_ATTACHMENT_NAME_PREFIX = "io.heckel.ntfy.DOWNLOAD_FILE_"
     private const val DOWNLOAD_WORK_ICON_NAME_PREFIX = "io.heckel.ntfy.DOWNLOAD_ICON_"
     private const val DOWNLOAD_WORK_BOTH_NAME_PREFIX = "io.heckel.ntfy.DOWNLOAD_BOTH_"

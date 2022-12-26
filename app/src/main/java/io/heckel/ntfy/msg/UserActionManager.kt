@@ -14,7 +14,7 @@ import io.heckel.ntfy.util.Log
  * in a doze state and Internet may not be available. It's also best practice, apparently.
  */
 object UserActionManager {
-    private const val TAG = "NtfyUserActionEx"
+    private const val TAG = "PonypushUserActionEx"
     private const val WORK_NAME_PREFIX = "io.heckel.ntfy.USER_ACTION_"
 
     fun enqueue(context: Context, notificationId: String, actionId: String) {

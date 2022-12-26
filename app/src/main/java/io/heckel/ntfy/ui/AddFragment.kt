@@ -92,12 +92,8 @@ class AddFragment : DialogFragment() {
         subscribeBaseUrlText = view.findViewById(R.id.add_dialog_subscribe_base_url_text)
         subscribeBaseUrlText.background = view.background
         subscribeBaseUrlText.hint = defaultBaseUrl ?: appBaseUrl
-        subscribeInstantDeliveryBox = view.findViewById(R.id.add_dialog_subscribe_instant_delivery_box)
-        subscribeInstantDeliveryCheckbox = view.findViewById(R.id.add_dialog_subscribe_instant_delivery_checkbox)
         subscribeInstantDeliveryDescription = view.findViewById(R.id.add_dialog_subscribe_instant_delivery_description)
-        subscribeUseAnotherServerCheckbox = view.findViewById(R.id.add_dialog_subscribe_use_another_server_checkbox)
         subscribeUseAnotherServerDescription = view.findViewById(R.id.add_dialog_subscribe_use_another_server_description)
-        subscribeForegroundDescription = view.findViewById(R.id.add_dialog_subscribe_foreground_description)
         subscribeProgress = view.findViewById(R.id.add_dialog_subscribe_progress)
         subscribeErrorText = view.findViewById(R.id.add_dialog_subscribe_error_text)
         subscribeErrorText.visibility = View.GONE
@@ -110,14 +106,6 @@ class AddFragment : DialogFragment() {
         loginProgress = view.findViewById(R.id.add_dialog_login_progress)
         loginErrorText = view.findViewById(R.id.add_dialog_login_error_text)
         loginErrorTextImage = view.findViewById(R.id.add_dialog_login_error_text_image)
-
-        // Set foreground description text
-        subscribeForegroundDescription.text = getString(R.string.add_dialog_foreground_description, shortUrl(appBaseUrl))
-
-        // Show/hide based on flavor (faster shortcut for validateInputSubscribeView, which can only run onShow)
-        if (!BuildConfig.FIREBASE_AVAILABLE) {
-            subscribeInstantDeliveryBox.visibility = View.GONE
-        }
 
         // Add baseUrl auto-complete behavior
         lifecycleScope.launch(Dispatchers.IO) {
@@ -173,12 +161,6 @@ class AddFragment : DialogFragment() {
             }
             subscribeTopicText.addTextChangedListener(subscribeTextWatcher)
             subscribeBaseUrlText.addTextChangedListener(subscribeTextWatcher)
-            subscribeInstantDeliveryCheckbox.setOnCheckedChangeListener { _, _ ->
-                validateInputSubscribeView()
-            }
-            subscribeUseAnotherServerCheckbox.setOnCheckedChangeListener { _, _ ->
-                validateInputSubscribeView()
-            }
             validateInputSubscribeView()
 
             // Focus topic text (keyboard is shown too, see above)
@@ -294,29 +276,7 @@ class AddFragment : DialogFragment() {
         // Show/hide things: This logic is intentionally kept simple. Do not simplify "just because it's pretty".
         val instantToggleAllowed = if (!BuildConfig.FIREBASE_AVAILABLE) {
             false
-        } else if (subscribeUseAnotherServerCheckbox.isChecked && subscribeBaseUrlText.text.toString() == appBaseUrl) {
-            true
-        } else if (!subscribeUseAnotherServerCheckbox.isChecked && defaultBaseUrl == null) {
-            true
-        } else {
-            false
-        }
-        if (subscribeUseAnotherServerCheckbox.isChecked) {
-            subscribeUseAnotherServerDescription.visibility = View.VISIBLE
-            subscribeBaseUrlLayout.visibility = View.VISIBLE
-        } else {
-            subscribeUseAnotherServerDescription.visibility = View.GONE
-            subscribeBaseUrlLayout.visibility = View.GONE
-        }
-        if (instantToggleAllowed) {
-            subscribeInstantDeliveryBox.visibility = View.VISIBLE
-            subscribeInstantDeliveryDescription.visibility = if (subscribeInstantDeliveryCheckbox.isChecked) View.VISIBLE else View.GONE
-            subscribeForegroundDescription.visibility = View.GONE
-        } else {
-            subscribeInstantDeliveryBox.visibility = View.GONE
-            subscribeInstantDeliveryDescription.visibility = View.GONE
-            subscribeForegroundDescription.visibility = if (BuildConfig.FIREBASE_AVAILABLE) View.VISIBLE else View.GONE
-        }
+        } else defaultBaseUrl == null
 
         // Enable/disable "Subscribe" button
         lifecycleScope.launch(Dispatchers.IO) {
@@ -328,8 +288,6 @@ class AddFragment : DialogFragment() {
                 it.runOnUiThread {
                     if (subscription != null || DISALLOWED_TOPICS.contains(topic)) {
                         positiveButton.isEnabled = false
-                    } else if (subscribeUseAnotherServerCheckbox.isChecked) {
-                        positiveButton.isEnabled = validTopic(topic) && validUrl(baseUrl)
                     } else {
                         positiveButton.isEnabled = validTopic(topic)
                     }
@@ -356,18 +314,14 @@ class AddFragment : DialogFragment() {
         activity.runOnUiThread {
             val topic = subscribeTopicText.text.toString()
             val baseUrl = getBaseUrl()
-            val instant = !BuildConfig.FIREBASE_AVAILABLE || baseUrl != appBaseUrl || subscribeInstantDeliveryCheckbox.isChecked
+            val instant = !BuildConfig.FIREBASE_AVAILABLE
             subscribeListener.onSubscribe(topic, baseUrl, instant)
             dialog?.dismiss()
         }
     }
 
     private fun getBaseUrl(): String {
-        return if (subscribeUseAnotherServerCheckbox.isChecked) {
-            subscribeBaseUrlText.text.toString()
-        } else {
-            return defaultBaseUrl ?: appBaseUrl
-        }
+        return defaultBaseUrl ?: appBaseUrl
     }
 
     private fun showSubscribeView() {
@@ -398,8 +352,6 @@ class AddFragment : DialogFragment() {
     private fun enableSubscribeView(enable: Boolean) {
         subscribeTopicText.isEnabled = enable
         subscribeBaseUrlText.isEnabled = enable
-        subscribeInstantDeliveryCheckbox.isEnabled = enable
-        subscribeUseAnotherServerCheckbox.isEnabled = enable
         positiveButton.isEnabled = enable
     }
 
@@ -432,7 +384,7 @@ class AddFragment : DialogFragment() {
     }
 
     companion object {
-        const val TAG = "NtfyAddFragment"
+        const val TAG = "PonypushAddFragment"
         private val DISALLOWED_TOPICS = listOf("docs", "static", "file") // If updated, also update in server
     }
 }

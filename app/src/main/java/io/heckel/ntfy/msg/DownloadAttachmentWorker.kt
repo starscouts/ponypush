@@ -210,7 +210,7 @@ class DownloadAttachmentWorker(private val context: Context, params: WorkerParam
         const val INPUT_DATA_USER_ACTION = "userAction"
         const val FILE_PROVIDER_AUTHORITY = BuildConfig.APPLICATION_ID + ".provider" // See AndroidManifest.xml
 
-        private const val TAG = "NtfyAttachDownload"
+        private const val TAG = "PonypushAttachDownload"
         private const val ATTACHMENT_CACHE_DIR = "attachments"
         private const val BUFFER_SIZE = 8 * 1024
         private const val NOTIFICATION_UPDATE_INTERVAL_MILLIS = 800

@@ -119,7 +119,7 @@ class BroadcastService(private val ctx: Context) {
     }
 
     companion object {
-        private const val TAG = "NtfyBroadcastService"
+        private const val TAG = "PonypushBroadcastService"
         private const val DOES_NOT_EXIST = -2586000
 
         // These constants cannot be changed without breaking the contract; also see manifest

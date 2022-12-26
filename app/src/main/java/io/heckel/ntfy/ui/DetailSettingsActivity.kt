@@ -510,7 +510,7 @@ class DetailSettingsActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val TAG = "NtfyDetailSettingsActiv"
+        private const val TAG = "PonypushDetailSettingsActiv"
         private const val SUBSCRIPTION_ICONS = "subscriptionIcons"
         private const val SUBSCRIPTION_ICON_MAX_SIZE_BYTES = 4194304
         private const val SUBSCRIPTION_ICON_MAX_WIDTH = 2048

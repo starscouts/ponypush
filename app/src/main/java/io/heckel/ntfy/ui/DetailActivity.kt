@@ -176,17 +176,6 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
         val topicUrl = topicShortUrl(subscriptionBaseUrl, subscriptionTopic)
         title = subscriptionDisplayName
 
-        // Set "how to instructions"
-        val howToExample: TextView = findViewById(R.id.detail_how_to_example)
-        howToExample.linksClickable = true
-
-        val howToText = getString(R.string.detail_how_to_example, topicUrl)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            howToExample.text = Html.fromHtml(howToText, Html.FROM_HTML_MODE_LEGACY)
-        } else {
-            howToExample.text = Html.fromHtml(howToText)
-        }
-
         // Swipe to refresh
         mainListContainer = findViewById(R.id.detail_notification_list_container)
         mainListContainer.setOnRefreshListener { refresh() }
@@ -345,10 +334,6 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.detail_menu_test -> {
-                onTestClick()
-                true
-            }
             R.id.detail_menu_notifications_enabled -> {
                 onMutedUntilClick(enable = false)
                 true
@@ -766,7 +751,7 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
     }
 
     companion object {
-        const val TAG = "NtfyDetailActivity"
+        const val TAG = "PonypushDetailActivity"
         const val EXTRA_SUBSCRIPTION_ID = "subscriptionId"
         const val EXTRA_SUBSCRIPTION_BASE_URL = "baseUrl"
         const val EXTRA_SUBSCRIPTION_TOPIC = "topic"

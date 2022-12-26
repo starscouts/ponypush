@@ -161,7 +161,7 @@ class UserFragment : DialogFragment() {
     }
 
     companion object {
-        const val TAG = "NtfyUserFragment"
+        const val TAG = "PonypushUserFragment"
         private const val BUNDLE_BASE_URL = "baseUrl"
         private const val BUNDLE_USERNAME = "username"
         private const val BUNDLE_PASSWORD = "password"

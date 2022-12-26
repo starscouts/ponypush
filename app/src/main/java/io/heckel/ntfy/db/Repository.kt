@@ -272,14 +272,14 @@ class Repository(private val sharedPrefs: SharedPreferences, private val databas
         return sharedPrefs.getInt(SHARED_PREFS_DARK_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
     }
 
-    fun setConnectionProtocol(connectionProtocol: String) {
+    fun setConnectionProtocol() {
         sharedPrefs.edit()
-            .putString(SHARED_PREFS_CONNECTION_PROTOCOL, connectionProtocol)
+            .putString(SHARED_PREFS_CONNECTION_PROTOCOL, "ws")
             .apply()
     }
 
     fun getConnectionProtocol(): String {
-        return sharedPrefs.getString(SHARED_PREFS_CONNECTION_PROTOCOL, null) ?: CONNECTION_PROTOCOL_JSONHTTP
+        return sharedPrefs.getString(SHARED_PREFS_CONNECTION_PROTOCOL, null) ?: CONNECTION_PROTOCOL_WS
     }
 
     fun getBroadcastEnabled(): Boolean {
@@ -512,7 +512,6 @@ class Repository(private val sharedPrefs: SharedPreferences, private val databas
         const val INSISTENT_MAX_PRIORITY_USE_GLOBAL = -1 // Values must match values.xml
         const val INSISTENT_MAX_PRIORITY_ENABLED = 1 // 0 = Disabled (but not needed in code)
 
-        const val CONNECTION_PROTOCOL_JSONHTTP = "jsonhttp"
         const val CONNECTION_PROTOCOL_WS = "ws"
 
         const val BATTERY_OPTIMIZATIONS_REMIND_TIME_ALWAYS = 1L
@@ -521,7 +520,7 @@ class Repository(private val sharedPrefs: SharedPreferences, private val databas
         const val WEBSOCKET_REMIND_TIME_ALWAYS = 1L
         const val WEBSOCKET_REMIND_TIME_NEVER = Long.MAX_VALUE
 
-        private const val TAG = "NtfyRepository"
+        private const val TAG = "PonypushRepository"
         private var instance: Repository? = null
 
         fun getInstance(context: Context): Repository {

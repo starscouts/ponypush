@@ -7,49 +7,44 @@
     <string name="channel_notifications_default_name">Default priority</string>
     <string name="channel_notifications_high_name">High priority</string>
     <string name="channel_notifications_max_name">Max priority</string>
-    <string name="channel_notifications_group_default_name">Default</string>
-    <string name="channel_subscriber_service_name">Subscription Service</string>
-    <string name="channel_subscriber_notification_title">Listening for incoming notifications</string>
-    <string name="channel_subscriber_notification_instant_text">Subscribed to instant delivery topics</string>
-    <string name="channel_subscriber_notification_instant_text_one">Subscribed to one instant delivery topic</string>
-    <string name="channel_subscriber_notification_instant_text_two">Subscribed to two instant delivery topics</string>
-    <string name="channel_subscriber_notification_instant_text_three">Subscribed to three instant delivery topics</string>
-    <string name="channel_subscriber_notification_instant_text_four">Subscribed to four instant delivery topics</string>
-    <string name="channel_subscriber_notification_instant_text_five">Subscribed to five instant delivery topics</string>
-    <string name="channel_subscriber_notification_instant_text_six">Subscribed to six instant delivery topics</string>
-    <string name="channel_subscriber_notification_instant_text_more">Subscribed to %1$d instant delivery topics</string>
-    <string name="channel_subscriber_notification_noinstant_text">Subscribed to topics</string>
-    <string name="channel_subscriber_notification_noinstant_text_one">Subscribed to one topic</string>
-    <string name="channel_subscriber_notification_noinstant_text_two">Subscribed to two topics</string>
-    <string name="channel_subscriber_notification_noinstant_text_three">Subscribed to three topics</string>
-    <string name="channel_subscriber_notification_noinstant_text_four">Subscribed to four topics</string>
-    <string name="channel_subscriber_notification_noinstant_text_five">Subscribed to five topics</string>
-    <string name="channel_subscriber_notification_noinstant_text_six">Subscribed to six topics</string>
-    <string name="channel_subscriber_notification_noinstant_text_more">Subscribed to %1$d topics</string>
+    <string name="channel_notifications_group_default_name" translatable="false">Ponypush</string>
+    <string name="channel_subscriber_service_name">Background Service</string>
+    <string name="channel_subscriber_notification_title">Waiting for notifications</string>
+    <string name="channel_subscriber_notification_instant_text">Monitoring for new notifications in channels</string>
+    <string name="channel_subscriber_notification_instant_text_one">Monitoring for new notifications in one channel</string>
+    <string name="channel_subscriber_notification_instant_text_two">Monitoring for new notifications in two channels</string>
+    <string name="channel_subscriber_notification_instant_text_three">Monitoring for new notifications in three channels</string>
+    <string name="channel_subscriber_notification_instant_text_four">Monitoring for new notifications in four channels</string>
+    <string name="channel_subscriber_notification_instant_text_five">Monitoring for new notifications in five channels</string>
+    <string name="channel_subscriber_notification_instant_text_six">Monitoring for new notifications in six channels</string>
+    <string name="channel_subscriber_notification_instant_text_more">Monitoring for new notifications in %1$d channels</string>
+    <string name="channel_subscriber_notification_noinstant_text">Following channels</string>
+    <string name="channel_subscriber_notification_noinstant_text_one">Following one channel</string>
+    <string name="channel_subscriber_notification_noinstant_text_two">Following two channels</string>
+    <string name="channel_subscriber_notification_noinstant_text_three">Following three channels</string>
+    <string name="channel_subscriber_notification_noinstant_text_four">Following four channels</string>
+    <string name="channel_subscriber_notification_noinstant_text_five">Following five channels</string>
+    <string name="channel_subscriber_notification_noinstant_text_six">Following six channels</string>
+    <string name="channel_subscriber_notification_noinstant_text_more">Following %1$d channels</string>
 
     <!-- Common refresh toasts -->
     <string name="refresh_message_result">%1$d notification(s) received</string>
     <string name="refresh_message_no_results">Everything is up to date</string>
-    <string name="refresh_message_error">Could not refresh %1$d subscriptions\n\n%2$s</string>
-    <string name="refresh_message_error_one">Could not refresh subscription: %1$s</string>
+    <string name="refresh_message_error">Could not refresh %1$d channels\n\n%2$s</string>
+    <string name="refresh_message_error_one">Could not refresh channel: %1$s</string>
 
     <!-- Main activity: Action bar -->
-    <string name="main_action_bar_title">Subscribed topics</string>
+    <string name="main_action_bar_title" translatable="false">Ponypush</string>
     <string name="main_menu_notifications_enabled">Notifications on</string>
     <string name="main_menu_notifications_disabled_forever">Notifications muted</string>
     <string name="main_menu_notifications_disabled_until">Notifications muted until %1$s</string>
     <string name="main_menu_settings_title">Settings</string>
-    <string name="main_menu_report_bug_title">Report a bug</string>
-    <string name="main_menu_docs_title">Read the docs</string>
-    <string name="main_menu_rate_title">Rate the app ⭐</string>
-    <string name="main_menu_donate_title">Donate 💸</string>
+    <string name="main_menu_report_bug_title" translatable="false">Report a bug</string>
+    <string name="main_menu_docs_title" translatable="false">Read the docs</string>
 
     <!-- Main activity: Action mode -->
     <string name="main_action_mode_menu_unsubscribe">Unsubscribe</string>
-    <string name="main_action_mode_delete_dialog_message">
-        Unsubscribe from the selected topic(s) and
-        permanently delete all notifications?
-    </string>
+    <string name="main_action_mode_delete_dialog_message">"\n        Unsubscribe from the selected channel(s) and\n        permanently delete all notifications?\n    "</string>
     <string name="main_action_mode_delete_dialog_permanently_delete">Delete permanently</string>
     <string name="main_action_mode_delete_dialog_cancel">Cancel</string>
 
@@ -59,16 +54,9 @@
     <string name="main_item_status_reconnecting">reconnecting …</string>
     <string name="main_item_status_unified_push">%1$s (UnifiedPush)</string>
     <string name="main_item_date_yesterday">yesterday</string>
-    <string name="main_add_button_description">Add subscription</string>
-    <string name="main_no_subscriptions_text">It looks like you don\'t have any subscriptions yet.</string>
-    <string name="main_how_to_intro">
-        Click the + to create or subscribe to a topic.
-        Afterwards you receive notifications on your device
-        when sending messages via PUT or POST.
-    </string>
-    <string name="main_how_to_link">Detailed instructions available on ntfy.sh, and in the docs.
-    </string>
-    <string name="main_unified_push_toast">This subscription is managed by %1$s via UnifiedPush</string>
+    <string name="main_add_button_description">Add channel</string>
+    <string name="main_no_subscriptions_text">Nothing here yet.</string>
+    <string name="main_unified_push_toast">This channel is managed by %1$s via UnifiedPush</string>
 
     <!-- Main activity: Battery banner -->
     <string name="main_banner_battery_text">Battery optimization should be off for the app to avoid notification delivery issues.</string>
@@ -77,21 +65,20 @@
     <string name="main_banner_battery_button_fix_now">Fix now</string>
 
     <!-- Main activity: WebSocket banner -->
-    <string name="main_banner_websocket_text">Switching to WebSockets is the recommended way to connect to your server, and could improve battery life, but may require <a href="https://ntfy.sh/docs/config/#nginxapache2caddy">additional config in your proxy</a>. This can be toggled in the Settings.</string>
-    <string name="main_banner_websocket_button_remind_later">Ask later</string>
-    <string name="main_banner_websocket_button_dismiss">Dismiss</string>
-    <string name="main_banner_websocket_button_enable_now">Enable now</string>
+    <string name="main_banner_websocket_text" translatable="false">Switching to WebSockets is the recommended way to connect to your server, and could improve battery life, but may require <a href="https://ntfy.sh/docs/config/#nginxapache2caddy">additional config in your proxy</a>. This can be toggled in the Settings.</string>
+    <string name="main_banner_websocket_button_remind_later" translatable="false">Ask later</string>
+    <string name="main_banner_websocket_button_dismiss" translatable="false">Dismiss</string>
+    <string name="main_banner_websocket_button_enable_now" translatable="false">Enable now</string>
 
     <!-- Add dialog -->
-    <string name="add_dialog_title">Subscribe to topic</string>
+    <string name="add_dialog_title">Subscribe to channel</string>
     <string name="add_dialog_description_below">
-        Topics may not be password-protected, so choose a name that is hard to guess.
-        Once subscribed, you can PUT/POST notifications.
+        Enter the name that has been given by your administrator.
     </string>
-    <string name="add_dialog_topic_name_hint">Topic name, e.g. phils_alerts</string>
+    <string name="add_dialog_topic_name_hint">Channel name</string>
     <string name="add_dialog_use_another_server">Use another server</string>
     <string name="add_dialog_use_another_server_description">Enter service URLs below to subscribe to topics from other servers.</string>
-    <string name="add_dialog_instant_delivery">Instant delivery in doze mode</string>
+    <string name="add_dialog_instant_delivery" translatable="false">Instant delivery in doze mode</string>
     <string name="add_dialog_instant_delivery_description">Ensures messages are delivered immediately, even if the device is inactive.</string>
     <string name="add_dialog_foreground_description">Instant delivery is always on for hosts other than %1$s.</string>
     <string name="add_dialog_button_cancel">Cancel</string>
@@ -100,44 +87,39 @@
     <string name="add_dialog_button_login">Log in</string>
     <string name="add_dialog_error_connection_failed">Connection failed: %1$s</string>
     <string name="add_dialog_login_title">Login required</string>
-    <string name="add_dialog_login_description">This topic requires you to login. Please type in a username and password.</string>
+    <string name="add_dialog_login_description">This topic requires authentication. Please type in the username and password given by your administrator.</string>
     <string name="add_dialog_login_username_hint">Username</string>
     <string name="add_dialog_login_password_hint">Password</string>
     <string name="add_dialog_login_error_not_authorized">Login failed. User %1$s not authorized.</string>
     <string name="add_dialog_login_new_user">New user</string>
-    <string name="add_dialog_base_urls_dropdown_choose">Choose service URL</string>
-    <string name="add_dialog_base_urls_dropdown_clear">Clear service URL</string>
+    <string name="add_dialog_base_urls_dropdown_choose" translatable="false">Choose service URL</string>
+    <string name="add_dialog_base_urls_dropdown_clear" translatable="false">Clear service URL</string>
 
     <!-- Detail activity -->
-    <string name="detail_no_notifications_text">You haven\'t received any notifications for this topic yet.</string>
-    <string name="detail_how_to_intro">To send notifications to this topic, simply PUT or POST to the topic URL.
+    <string name="detail_how_to_intro" translatable="false">To send notifications to this topic, simply PUT or POST to the topic URL.
     </string>
-    <string name="detail_how_to_example"><![CDATA[ Example (using curl):<br/><tt>$ curl -d \"Hi\" %1$s</tt> ]]></string>
-    <string name="detail_how_to_link">Detailed instructions available on ntfy.sh, and in the docs.
+    <string name="detail_how_to_example" translatable="false"><![CDATA[ Example (using curl):<br/><tt>$ curl -d \"Hi\" %1$s</tt> ]]></string>
+    <string name="detail_how_to_link" translatable="false">Detailed instructions available on ntfy.sh, and in the docs.
     </string>
-    <string name="detail_clear_dialog_message">Delete all of the notifications in this topic?
-    </string>
+    <string name="detail_clear_dialog_message">"Delete all of the notifications in this channel?     "</string>
     <string name="detail_clear_dialog_permanently_delete">Delete permanently</string>
     <string name="detail_clear_dialog_cancel">Cancel</string>
-    <string name="detail_delete_dialog_message">
-        Unsubscribe from this topic and delete
-        all received notifications?
-    </string>
+    <string name="detail_delete_dialog_message">"\n        Unsubscribe from this channel and delete\n        all received notifications?\n    "</string>
     <string name="detail_delete_dialog_permanently_delete">Delete permanently</string>
     <string name="detail_delete_dialog_cancel">Cancel</string>
-    <string name="detail_test_title">Test: You can set a title if you like.</string>
-    <string name="detail_test_message">This is a test notification from the ntfy Android app. It has a level %1$d priority.
+    <string name="detail_test_title" translatable="false">Test: You can set a title if you like.</string>
+    <string name="detail_test_message" translatable="false">This is a test notification from the Ponypush Android app. It has a level %1$d priority.
         If you send another, it may look different.
     </string>
-    <string name="detail_test_message_error">Cannot send message: %1$s</string>
-    <string name="detail_test_message_error_unauthorized_anon">Cannot send message: Anonymous publishing not allowed.</string>
-    <string name="detail_test_message_error_unauthorized_user">Cannot send message: The user \"%1$s\" is not authorized.</string>
-    <string name="detail_test_message_error_too_large">Cannot send message: The attachment is too big.</string>
+    <string name="detail_test_message_error" translatable="false">Cannot send message: %1$s</string>
+    <string name="detail_test_message_error_unauthorized_anon" translatable="false">Cannot send message: Anonymous publishing not allowed.</string>
+    <string name="detail_test_message_error_unauthorized_user" translatable="false">Cannot send message: The user \"%1$s\" is not authorized.</string>
+    <string name="detail_test_message_error_too_large" translatable="false">Cannot send message: The attachment is too big.</string>
     <string name="detail_copied_to_clipboard_message">Copied to clipboard</string>
     <string name="detail_instant_delivery_enabled">Instant delivery on</string>
     <string name="detail_instant_delivery_disabled">Instant delivery off</string>
-    <string name="detail_deep_link_subscribed_toast_message">Subscribed to topic %1$s</string>
-    <string name="detail_item_tags">Tags: %1$s</string>
+    <string name="detail_deep_link_subscribed_toast_message">Subscribed to channel %1$s</string>
+    <string name="detail_item_tags">Category: %1$s</string>
     <string name="detail_item_snack_deleted">Notification deleted</string>
     <string name="detail_item_snack_undo">Undo</string>
     <string name="detail_item_menu_open">Open file</string>
@@ -154,7 +136,7 @@
     <string name="detail_item_cannot_open">Cannot open attachment: %1$s</string>
     <string name="detail_item_cannot_open_not_found">Cannot open attachment: The file may have been deleted, or no installed app can open the file.</string>
     <string name="detail_item_cannot_open_url">Cannot open URL: %1$s</string>
-    <string name="detail_item_cannot_open_apk">Apps cannot be installed anymore. Download via browser instead. See issue #531 for details.</string>
+    <string name="detail_item_cannot_open_apk">Apps cannot be installed for security reasons. Download via browser instead.</string>
     <string name="detail_item_cannot_save">Cannot save attachment: %1$s</string>
     <string name="detail_item_cannot_delete">Cannot delete attachment: %1$s</string>
     <string name="detail_item_download_failed">Could not download attachment: %1$s</string>
@@ -175,8 +157,8 @@
     <string name="detail_menu_notifications_disabled_until">Notifications muted until %1$s</string>
     <string name="detail_menu_enable_instant">Enable instant delivery</string>
     <string name="detail_menu_disable_instant">Turn off instant delivery</string>
-    <string name="detail_menu_test">Send test notification</string>
-    <string name="detail_menu_copy_url">Copy topic address</string>
+    <string name="detail_menu_test" translatable="false">Send test notification</string>
+    <string name="detail_menu_copy_url">Copy channel address</string>
     <string name="detail_menu_clear">Clear all notifications</string>
     <string name="detail_menu_settings">Subscription settings</string>
     <string name="detail_menu_unsubscribe">Unsubscribe</string>
@@ -195,17 +177,17 @@
     <!-- ... -->
 
     <!-- Share activity -->
-    <string name="share_title">Share</string>
-    <string name="share_menu_send">Share</string>
-    <string name="share_content_title">Message preview</string>
-    <string name="share_content_text_hint">Add content to share here</string>
-    <string name="share_content_image_text">An image was shared with you</string>
-    <string name="share_content_image_error">Cannot read image: %1$s</string>
-    <string name="share_content_file_text">A file was shared with you</string>
-    <string name="share_content_file_error">Cannot read file info: %1$s</string>
-    <string name="share_topic_title">Share to</string>
-    <string name="share_suggested_topics">Suggested topics</string>
-    <string name="share_successful">Message published</string>
+    <string name="share_title" translatable="false">Share</string>
+    <string name="share_menu_send" translatable="false">Share</string>
+    <string name="share_content_title" translatable="false">Message preview</string>
+    <string name="share_content_text_hint" translatable="false">Add content to share here</string>
+    <string name="share_content_image_text" translatable="false">An image was shared with you</string>
+    <string name="share_content_image_error" translatable="false">Cannot read image: %1$s</string>
+    <string name="share_content_file_text" translatable="false">A file was shared with you</string>
+    <string name="share_content_file_error" translatable="false">Cannot read file info: %1$s</string>
+    <string name="share_topic_title" translatable="false">Share to</string>
+    <string name="share_suggested_topics" translatable="false">Suggested channels</string>
+    <string name="share_successful" translatable="false">Message published</string>
 
     <!-- Notification dialog -->
     <string name="notification_dialog_title">Mute notifications</string>
@@ -240,20 +222,20 @@
     <string name="settings_notifications_muted_until_show_all">Showing all notifications</string>
     <string name="settings_notifications_muted_until_forever">Notifications muted until resumed</string>
     <string name="settings_notifications_muted_until_x">Notifications muted until %1$s</string>
-    <string name="settings_notifications_min_priority_title">Minimum priority</string>
-    <string name="settings_notifications_min_priority_summary_any">Showing all notifications</string>
-    <string name="settings_notifications_min_priority_summary_x_or_higher">Show notifications if priority is %1$d (%2$s) or above</string>
-    <string name="settings_notifications_min_priority_summary_max">Show notifications if priority is 5 (max)</string>
-    <string name="settings_notifications_min_priority_min">Any priority</string>
-    <string name="settings_notifications_min_priority_low">Low priority and above</string>
-    <string name="settings_notifications_min_priority_default">Default priority and above</string>
-    <string name="settings_notifications_min_priority_high">High priority and above</string>
-    <string name="settings_notifications_min_priority_max">Only max priority</string>
-    <string name="settings_notifications_priority_min">min</string>
-    <string name="settings_notifications_priority_low">low</string>
-    <string name="settings_notifications_priority_default">default</string>
-    <string name="settings_notifications_priority_high">high</string>
-    <string name="settings_notifications_priority_max">max</string>
+    <string name="settings_notifications_min_priority_title" translatable="false">Minimum priority</string>
+    <string name="settings_notifications_min_priority_summary_any" translatable="false">Showing all notifications</string>
+    <string name="settings_notifications_min_priority_summary_x_or_higher" translatable="false">Show notifications if priority is %1$d (%2$s) or above</string>
+    <string name="settings_notifications_min_priority_summary_max" translatable="false">Show notifications if priority is 5 (max)</string>
+    <string name="settings_notifications_min_priority_min" translatable="false">Any priority</string>
+    <string name="settings_notifications_min_priority_low" translatable="false">Low priority and above</string>
+    <string name="settings_notifications_min_priority_default" translatable="false">Default priority and above</string>
+    <string name="settings_notifications_min_priority_high" translatable="false">High priority and above</string>
+    <string name="settings_notifications_min_priority_max" translatable="false">Only max priority</string>
+    <string name="settings_notifications_priority_min" translatable="false">min</string>
+    <string name="settings_notifications_priority_low" translatable="false">low</string>
+    <string name="settings_notifications_priority_default" translatable="false">default</string>
+    <string name="settings_notifications_priority_high" translatable="false">high</string>
+    <string name="settings_notifications_priority_max" translatable="false">max</string>
     <string name="settings_notifications_channel_prefs_title">Channel settings</string>
     <string name="settings_notifications_channel_prefs_summary">Do Not Disturb (DND) override, sounds, etc.</string>
     <string name="settings_notifications_auto_download_title">Download attachments</string>
@@ -281,90 +263,90 @@
     <string name="settings_notifications_auto_delete_one_week">After one week</string>
     <string name="settings_notifications_auto_delete_one_month">After one month</string>
     <string name="settings_notifications_auto_delete_three_months">After 3 months</string>
-    <string name="settings_notifications_insistent_max_priority_title">Keep alerting for highest priority</string>
-    <string name="settings_notifications_insistent_max_priority_summary_enabled">Max priority notifications continuously alert until dismissed</string>
-    <string name="settings_notifications_insistent_max_priority_summary_disabled">Max priority notifications only alert once</string>
+    <string name="settings_notifications_insistent_max_priority_title" translatable="false">Keep alerting for highest priority</string>
+    <string name="settings_notifications_insistent_max_priority_summary_enabled" translatable="false">Max priority notifications continuously alert until dismissed</string>
+    <string name="settings_notifications_insistent_max_priority_summary_disabled" translatable="false">Max priority notifications only alert once</string>
     <string name="settings_general_header">General</string>
-    <string name="settings_general_default_base_url_title">Default server</string>
-    <string name="settings_general_default_base_url_message">Enter your server\'s root URL to use your own server as a default when subscribing to new topics and/or sharing to topics.</string>
+    <string name="settings_general_default_base_url_title" translatable="false">Default server</string>
+    <string name="settings_general_default_base_url_message" translatable="false">Enter your server\'s root URL to use your own server as a default when subscribing to new topics and/or sharing to topics.</string>
     <string name="settings_general_default_base_url_default_summary">%1$s (default)</string>
-    <string name="settings_general_users_title">Manage users</string>
-    <string name="settings_general_users_summary">Add/remove users for protected topics</string>
-    <string name="settings_general_users_prefs_title">Users</string>
-    <string name="settings_general_users_prefs_user_not_used">Not used by any topics</string>
-    <string name="settings_general_users_prefs_user_used_by_one">Used by topic %1$s</string>
-    <string name="settings_general_users_prefs_user_used_by_many">Used by topics %1$s</string>
-    <string name="settings_general_users_prefs_user_add">Add users</string>
-    <string name="settings_general_users_prefs_user_add_title">Add new user</string>
-    <string name="settings_general_users_prefs_user_add_summary">Create a new user for a new server</string>
-    <string name="settings_general_dark_mode_title">Dark mode</string>
+    <string name="settings_general_users_title" translatable="false">Manage users</string>
+    <string name="settings_general_users_summary" translatable="false">Add/remove users for protected topics</string>
+    <string name="settings_general_users_prefs_title" translatable="false">Users</string>
+    <string name="settings_general_users_prefs_user_not_used" translatable="false">Not used by any topics</string>
+    <string name="settings_general_users_prefs_user_used_by_one" translatable="false">Used by topic %1$s</string>
+    <string name="settings_general_users_prefs_user_used_by_many" translatable="false">Used by topics %1$s</string>
+    <string name="settings_general_users_prefs_user_add" translatable="false">Add users</string>
+    <string name="settings_general_users_prefs_user_add_title" translatable="false">Add new user</string>
+    <string name="settings_general_users_prefs_user_add_summary" translatable="false">Create a new user for a new server</string>
+    <string name="settings_general_dark_mode_title">Dark theme</string>
     <string name="settings_general_dark_mode_summary_system">Using the system default</string>
-    <string name="settings_general_dark_mode_summary_light">Light mode on</string>
-    <string name="settings_general_dark_mode_summary_dark">Dark mode on. Are you a vampire?</string>
+    <string name="settings_general_dark_mode_summary_light">Light theme on</string>
+    <string name="settings_general_dark_mode_summary_dark">Dark theme on. Are you a bat pony?</string>
     <string name="settings_general_dark_mode_entry_system">Use system default</string>
-    <string name="settings_general_dark_mode_entry_light">Light mode</string>
-    <string name="settings_general_dark_mode_entry_dark">Dark mode</string>
-    <string name="settings_backup_restore_header">Backup &amp; Restore</string>
-    <string name="settings_backup_restore_backup_title">Back up to file</string>
-    <string name="settings_backup_restore_backup_summary">Export config, notifications, and users</string>
-    <string name="settings_backup_restore_backup_entry_everything">Everything</string>
-    <string name="settings_backup_restore_backup_entry_everything_no_users">Everything, except users</string>
-    <string name="settings_backup_restore_backup_entry_settings_only">Settings only</string>
-    <string name="settings_backup_restore_backup_successful">Backup created</string>
-    <string name="settings_backup_restore_backup_failed">Backup failed: %1$s</string>
-    <string name="settings_backup_restore_restore_title">Restore from file</string>
-    <string name="settings_backup_restore_restore_summary">Import config, notifications and users</string>
-    <string name="settings_backup_restore_restore_successful">Restore successful</string>
+    <string name="settings_general_dark_mode_entry_light">Light theme</string>
+    <string name="settings_general_dark_mode_entry_dark">Dark theme</string>
+    <string name="settings_backup_restore_header" translatable="false">Backup &amp; Restore</string>
+    <string name="settings_backup_restore_backup_title" translatable="false">Back up to file</string>
+    <string name="settings_backup_restore_backup_summary" translatable="false">Export config, notifications, and users</string>
+    <string name="settings_backup_restore_backup_entry_everything" translatable="false">Everything</string>
+    <string name="settings_backup_restore_backup_entry_everything_no_users" translatable="false">Everything, except users</string>
+    <string name="settings_backup_restore_backup_entry_settings_only" translatable="false">Settings only</string>
+    <string name="settings_backup_restore_backup_successful" translatable="false">Backup created</string>
+    <string name="settings_backup_restore_backup_failed" translatable="false">Backup failed: %1$s</string>
+    <string name="settings_backup_restore_restore_title" translatable="false">Restore from file</string>
+    <string name="settings_backup_restore_restore_summary" translatable="false">Import config, notifications and users</string>
+    <string name="settings_backup_restore_restore_successful" translatable="false">Restore successful</string>
     <string name="settings_backup_restore_restore_failed">Restore failed: %1$s</string>
-    <string name="settings_advanced_header">Advanced</string>
-    <string name="settings_advanced_broadcast_title">Broadcast messages</string>
-    <string name="settings_advanced_broadcast_summary_enabled">Apps can receive incoming notifications as broadcasts</string>
-    <string name="settings_advanced_broadcast_summary_disabled">Apps cannot receive notifications as broadcasts</string>
-    <string name="settings_advanced_record_logs_title">Record logs</string>
+    <string name="settings_advanced_header" translatable="false">Advanced</string>
+    <string name="settings_advanced_broadcast_title" translatable="false">Apps access</string>
+    <string name="settings_advanced_broadcast_summary_enabled" translatable="false">Apps can access notification content (advanced)</string>
+    <string name="settings_advanced_broadcast_summary_disabled" translatable="false">Apps cannot access notification content</string>
+    <string name="settings_advanced_record_logs_title">Diagnostics logs</string>
     <string name="settings_advanced_record_logs_summary_enabled">Logging (up to 1,000 entries) to device …</string>
-    <string name="settings_advanced_record_logs_summary_disabled">Turn on logging, so you can share logs later to diagnose issues.</string>
-    <string name="settings_advanced_export_logs_title">Copy/upload logs</string>
-    <string name="settings_advanced_export_logs_summary">Copy logs to the clipboard, or upload to nopaste.net (owned by the ntfy author). Hostnames and topics can be censored, notifications will never be.</string>
+    <string name="settings_advanced_record_logs_summary_disabled">Enable recording diagnostics logs to help with technical support.</string>
+    <string name="settings_advanced_export_logs_title">Copy logs</string>
+    <string name="settings_advanced_export_logs_summary">Copy logs to the clipboard. Channel names can be censored, notifications will never be.</string>
     <string name="settings_advanced_export_logs_entry_copy_original">Copy to clipboard</string>
     <string name="settings_advanced_export_logs_entry_copy_scrubbed">Copy to clipboard (censored)</string>
-    <string name="settings_advanced_export_logs_entry_upload_original">Upload and copy link</string>
-    <string name="settings_advanced_export_logs_entry_upload_scrubbed">Upload and copy link (censored)</string>
+    <string name="settings_advanced_export_logs_entry_upload_original" translatable="false">Upload and copy link</string>
+    <string name="settings_advanced_export_logs_entry_upload_scrubbed" translatable="false">Upload and copy link (censored)</string>
     <string name="settings_advanced_export_logs_copied_logs">Logs copied to clipboard</string>
-    <string name="settings_advanced_export_logs_uploading">Uploading log …</string>
-    <string name="settings_advanced_export_logs_copied_url">Logs uploaded and URL copied</string>
+    <string name="settings_advanced_export_logs_uploading" translatable="false">Uploading log …</string>
+    <string name="settings_advanced_export_logs_copied_url" translatable="false">Logs uploaded and URL copied</string>
     <string name="settings_advanced_export_logs_error_uploading">Could not upload logs: %1$s</string>
-    <string name="settings_advanced_export_logs_scrub_dialog_text">These topics/hostnames were replaced with fruit names, so you can share the log without worry:\n\n%1$s\n\nPasswords are scrubbed, but not listed here.</string>
-    <string name="settings_advanced_export_logs_scrub_dialog_empty">No topics/hostnames were redacted. Maybe you don\'t have any subscriptions?</string>
+    <string name="settings_advanced_export_logs_scrub_dialog_text">These channel names were replaced with fruit names, so you can share the log without worry:\n\n%1$s\n\nPasswords are scrubbed, but not listed here.</string>
+    <string name="settings_advanced_export_logs_scrub_dialog_empty">No channel names were redacted. Maybe you don\'t have any subscriptions?</string>
     <string name="settings_advanced_export_logs_scrub_dialog_button_ok">OK</string>
     <string name="settings_advanced_clear_logs_title">Clear logs</string>
     <string name="settings_advanced_clear_logs_summary">Delete previously recorded logs, and start over</string>
     <string name="settings_advanced_clear_logs_deleted_toast">Logs deleted</string>
-    <string name="settings_advanced_connection_protocol_title">Connection protocol</string>
-    <string name="settings_advanced_connection_protocol_summary_jsonhttp">Use a JSON stream over HTTP to connect to the server. This method is battle-tested, but may consume more battery.</string>
-    <string name="settings_advanced_connection_protocol_summary_ws">Use WebSockets to connect to the server. This is the recommended method, but may require additional config in your proxy.</string>
-    <string name="settings_advanced_connection_protocol_entry_jsonhttp">JSON stream over HTTP</string>
-    <string name="settings_advanced_connection_protocol_entry_ws">WebSockets</string>
+    <string name="settings_advanced_connection_protocol_title" translatable="false">Connection protocol</string>
+    <string name="settings_advanced_connection_protocol_summary_jsonhttp" translatable="false">Use a JSON stream over HTTP to connect to the server. This method is battle-tested, but may consume more battery.</string>
+    <string name="settings_advanced_connection_protocol_summary_ws" translatable="false">Use WebSockets to connect to the server. This is the recommended method, but may require additional config in your proxy.</string>
+    <string name="settings_advanced_connection_protocol_entry_jsonhttp" translatable="false">JSON stream over HTTP</string>
+    <string name="settings_advanced_connection_protocol_entry_ws" translatable="false">WebSockets</string>
     <string name="settings_about_header">About</string>
     <string name="settings_about_version_title">Version</string>
-    <string name="settings_about_version_format">ntfy %1$s (%2$s)</string>
+    <string name="settings_about_version_format" translatable="false">ntfy %1$s (%2$s)</string>
     <string name="settings_about_version_copied_to_clipboard_message">Copied to clipboard</string>
 
     <!-- Subscription settings (most strings are re-used from above) -->
     <string name="detail_settings_notifications_instant_title">Instant delivery</string>
-    <string name="detail_settings_notifications_instant_summary_on">Notifications are delivered instantly. Requires a foreground service and consumes more battery.</string>
-    <string name="detail_settings_notifications_instant_summary_off">Notifications are delivered using Firebase. Delivery may be delayed, but consumes less battery.</string>
+    <string name="detail_settings_notifications_instant_summary_on">Notifications are delivered instantly. Requires a background service and consumes more battery.</string>
+    <string name="detail_settings_notifications_instant_summary_off">Notifications are delivered using Firebase Cloud Messaging. Delivery may be delayed, but consumes less battery.</string>
     <string name="detail_settings_notifications_dedicated_channels_title">Custom notification settings</string>
     <string name="detail_settings_notifications_dedicated_channels_summary_on">Using custom settings for this subscription</string>
-    <string name="detail_settings_notifications_dedicated_channels_summary_off">Using default settings (sounds, Do Not Disturb override, etc.)</string>
+    <string name="detail_settings_notifications_dedicated_channels_summary_off">Using default settings</string>
     <string name="detail_settings_notifications_open_channels_title">Configure notification settings</string>
     <string name="detail_settings_notifications_open_channels_summary">Do Not Disturb (DND) override, sounds, etc.</string>
-    <string name="detail_settings_notifications_insistent_max_priority_list_item_enabled">Keep alerting</string>
-    <string name="detail_settings_notifications_insistent_max_priority_list_item_disabled">Alert only once</string>
+    <string name="detail_settings_notifications_insistent_max_priority_list_item_enabled" translatable="false">Keep alerting</string>
+    <string name="detail_settings_notifications_insistent_max_priority_list_item_disabled" translatable="false">Alert only once</string>
     <string name="detail_settings_appearance_header">Appearance</string>
     <string name="detail_settings_appearance_icon_set_title">Subscription icon</string>
     <string name="detail_settings_appearance_icon_set_summary">Set an icon to be displayed in notifications</string>
     <string name="detail_settings_appearance_icon_remove_title">Subscription icon (tap to remove)</string>
-    <string name="detail_settings_appearance_icon_remove_summary">Icon displayed in notifications for this topic</string>
+    <string name="detail_settings_appearance_icon_remove_summary">Icon displayed in notifications for this channel</string>
     <string name="detail_settings_appearance_icon_error_saving">Unable to save icon: %1$s</string>
     <string name="detail_settings_appearance_display_name_title">Display name</string>
     <string name="detail_settings_appearance_display_name_message">Set a custom display name for this subscription. Leave blank for default (%1$s).</string>
@@ -372,20 +354,23 @@
     <string name="detail_settings_global_setting_title">Use global setting</string>
     <string name="detail_settings_global_setting_suffix">using global setting</string>
     <string name="detail_settings_about_header">About</string>
-    <string name="detail_settings_about_topic_url_title">Topic URL</string>
+    <string name="detail_settings_about_topic_url_title">Channel URL</string>
     <string name="detail_settings_about_topic_url_copied_to_clipboard_message">Copied to clipboard</string>
 
     <!-- User add/edit dialog -->
-    <string name="user_dialog_title_add">Add user</string>
-    <string name="user_dialog_title_edit">Edit user</string>
-    <string name="user_dialog_description_add">You can add a user here. All topics for the given server will use this user.</string>
-    <string name="user_dialog_description_edit">You may edit username/password for the selected user, or delete it.</string>
-    <string name="user_dialog_base_url_hint">Service URL</string>
-    <string name="user_dialog_username_hint">Username</string>
-    <string name="user_dialog_password_hint_add">Password</string>
-    <string name="user_dialog_password_hint_edit">Password (unchanged if left blank)</string>
-    <string name="user_dialog_button_add">Add user</string>
-    <string name="user_dialog_button_cancel">Cancel</string>
-    <string name="user_dialog_button_delete">Delete user</string>
-    <string name="user_dialog_button_save">Save</string>
+    <string name="user_dialog_title_add" translatable="false">Add user</string>
+    <string name="user_dialog_title_edit" translatable="false">Edit user</string>
+    <string name="user_dialog_description_add" translatable="false">You can add a user here. All topics for the given server will use this user.</string>
+    <string name="user_dialog_description_edit" translatable="false">You may edit username/password for the selected user, or delete it.</string>
+    <string name="user_dialog_base_url_hint" translatable="false">Service URL</string>
+    <string name="user_dialog_username_hint" translatable="false">Username</string>
+    <string name="user_dialog_password_hint_add" translatable="false">Password</string>
+    <string name="user_dialog_password_hint_edit" translatable="false">Password (unchanged if left blank)</string>
+    <string name="user_dialog_button_add" translatable="false">Add user</string>
+    <string name="user_dialog_button_cancel" translatable="false">Cancel</string>
+    <string name="user_dialog_button_delete" translatable="false">Delete user</string>
+    <string name="user_dialog_button_save" translatable="false">Save</string>
+    <string name="detail_no_notifications_text">Nothing here yet.</string>
+
+    <!-- Equestria.dev: notification categories -->
 </resources>

@@ -102,7 +102,7 @@ class JsonConnection(
     }
 
     companion object {
-        private const val TAG = "NtfySubscriberConn"
+        private const val TAG = "PonypushSubscriberConn"
         private const val CONNECTION_LOOP_DELAY_MILLIS = 30_000L
         private const val RETRY_STEP_MILLIS = 5_000L
         private const val RETRY_MAX_MILLIS = 60_000L

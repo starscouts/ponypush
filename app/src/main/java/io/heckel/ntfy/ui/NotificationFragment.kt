@@ -92,6 +92,6 @@ class NotificationFragment : DialogFragment() {
     }
 
     companion object {
-        const val TAG = "NtfyNotificationFragment"
+        const val TAG = "PonypushNotificationFragment"
     }
 }

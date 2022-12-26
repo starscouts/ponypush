@@ -4,8 +4,8 @@
          The translatable="false" attribute is just an additional safety. -->
 
     <!-- Main app constants -->
-    <string name="app_name" translatable="false">ntfy</string>
-    <string name="app_base_url" translatable="false">https://ntfy.sh</string> <!-- If changed, you must also change google-services.json! -->
+    <string name="app_name" translatable="false">Ponypush</string>
+    <string name="app_base_url" translatable="false">https://notifications.equestria.dev</string> <!-- If changed, you must also change google-services.json! -->
 
     <!-- Main activity -->
     <string name="main_menu_report_bug_url" translatable="false">https://github.com/binwiederhier/ntfy/issues</string>
@@ -171,14 +171,10 @@
     <string-array name="settings_advanced_export_logs_entries">
         <item>@string/settings_advanced_export_logs_entry_copy_original</item>
         <item>@string/settings_advanced_export_logs_entry_copy_scrubbed</item>
-        <item>@string/settings_advanced_export_logs_entry_upload_original</item>
-        <item>@string/settings_advanced_export_logs_entry_upload_scrubbed</item>
     </string-array>
     <string-array name="settings_advanced_export_logs_values">
         <item>copy_original</item>
         <item>copy_scrubbed</item>
-        <item>upload_original</item>
-        <item>upload_scrubbed</item>
     </string-array>
     <string-array name="settings_backup_restore_backup_entries">
         <item>@string/settings_backup_restore_backup_entry_everything</item>

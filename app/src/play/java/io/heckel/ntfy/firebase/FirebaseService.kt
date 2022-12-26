@@ -161,6 +161,6 @@ class FirebaseService : FirebaseMessagingService() {
     }
 
     companion object {
-        private const val TAG = "NtfyFirebase"
+        private const val TAG = "PonypushFirebase"
     }
 }

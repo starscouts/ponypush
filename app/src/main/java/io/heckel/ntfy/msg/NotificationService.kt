@@ -22,6 +22,7 @@ import io.heckel.ntfy.ui.DetailActivity
 import io.heckel.ntfy.ui.MainActivity
 import io.heckel.ntfy.util.*
 import java.util.*
+import kotlin.reflect.typeOf
 
 class NotificationService(val context: Context) {
     private val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -88,13 +89,35 @@ class NotificationService(val context: Context) {
     }
 
     private fun displayInternal(subscription: Subscription, notification: Notification, update: Boolean = false) {
+        val tags = notification.tags.split(",").map { it.trim() }
+
+        val icon = if (tags.contains("bits")) {
+            R.drawable.ic_toll_white_24dp
+        } else if (tags.contains("switch")) {
+            R.drawable.ic_layers_white_24dp
+        } else if (tags.contains("wakeup")) {
+            R.drawable.ic_bed_white_24dp
+        } else if (tags.contains("pleasure")) {
+            R.drawable.ic_play_for_work_white_24dp
+        } else if (tags.contains("delta")) {
+            R.drawable.ic_change_history_white_24dp
+        } else if (tags.contains("emergency")) {
+            R.drawable.ic_warning_amber_white_24dp
+        } else if (tags.contains("travelling")) {
+            R.drawable.ic_explore_white_24dp
+        } else if (tags.contains("alarm")) {
+            R.drawable.ic_av_timer_white_24dp
+        } else {
+            R.drawable.ic_notification
+        }
+
         val title = formatTitle(subscription, notification)
         val groupId = if (subscription.dedicatedChannels) subscriptionGroupId(subscription) else DEFAULT_GROUP
         val channelId = toChannelId(groupId, notification.priority)
         val insistent = notification.priority == PRIORITY_MAX &&
                 (repository.getInsistentMaxPriorityEnabled() || subscription.insistent == Repository.INSISTENT_MAX_PRIORITY_ENABLED)
         val builder = NotificationCompat.Builder(context, channelId)
-            .setSmallIcon(R.drawable.ic_notification)
+            .setSmallIcon(icon)
             .setColor(ContextCompat.getColor(context, Colors.notificationIcon(context)))
             .setContentTitle(title)
             .setOnlyAlertOnce(true) // Do not vibrate or play sound if already showing (updates!)
@@ -527,7 +550,7 @@ class NotificationService(val context: Context) {
         const val BROADCAST_TYPE_DOWNLOAD_CANCEL = "io.heckel.ntfy.DOWNLOAD_ACTION_CANCEL"
         const val BROADCAST_TYPE_USER_ACTION = "io.heckel.ntfy.USER_ACTION_RUN"
 
-        private const val TAG = "NtfyNotifService"
+        private const val TAG = "PonypushNotifService"
 
         private const val DEFAULT_GROUP = "ntfy"
         private const val SUBSCRIPTION_GROUP_PREFIX = "ntfy-subscription-"

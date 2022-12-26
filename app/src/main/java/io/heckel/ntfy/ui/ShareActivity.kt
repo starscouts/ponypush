@@ -355,6 +355,6 @@ class ShareActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val TAG = "NtfyShareActivity"
+        const val TAG = "PonypushShareActivity"
     }
 }

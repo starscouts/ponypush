@@ -131,6 +131,6 @@ class MainAdapter(private val repository: Repository, private val onClick: (Subs
     }
 
     companion object {
-        const val TAG = "NtfyMainAdapter"
+        const val TAG = "PonypushMainAdapter"
     }
 }

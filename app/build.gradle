@@ -10,12 +10,13 @@ android {
     compileSdkVersion 33
 
     defaultConfig {
-        applicationId "io.heckel.ntfy"
+        applicationId "dev.equestria.notifications"
         minSdkVersion 21
         targetSdkVersion 33
 
-        versionCode 32
-        versionName "1.16.0"
+        versionCode 135
+        versionName "1.6.0"
+        buildConfigField 'String', "NTFY_VERSION", '"1.16.0"'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

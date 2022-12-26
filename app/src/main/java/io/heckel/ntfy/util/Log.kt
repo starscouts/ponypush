@@ -47,13 +47,18 @@ class Log(private val logsDao: LogDao) {
     }
 
     private fun prependDeviceInfo(logs: String, settings: String, scrubLine: Boolean): String {
-        val maybeScrubLine = if (scrubLine) "Server URLs (aside from ntfy.sh) and topics have been replaced with fruits 🍌🥝🍋🥥🥑🍊🍎🍑.\n" else ""
+        val maybeScrubLine = if (scrubLine) "Server URLs (aside from notifications.equestria.dev) and topics have been replaced with fruits 🍌🥝🍋🥥🥑🍊🍎🍑.\n" else ""
+        val type = if (BuildConfig.FIREBASE_AVAILABLE) {
+            "Firebase Cloud Messaging"
+        } else {
+            "WebSocket"
+        }
         return """
-            This is a log of the ntfy Android app. The log shows up to 1,000 entries.
+            This is a log of the Ponypush Android app. The log shows up to 1,000 entries.
             $maybeScrubLine
             Device info:
             --
-            ntfy: ${BuildConfig.VERSION_NAME} (${BuildConfig.FLAVOR})
+            Ponypush: ${BuildConfig.VERSION_NAME + " (ntfy " + BuildConfig.NTFY_VERSION + ", " + type + ")"}
             OS: ${System.getProperty("os.version")}
             Android: ${Build.VERSION.RELEASE} (SDK ${Build.VERSION.SDK_INT})
             Model: ${Build.DEVICE}
@@ -134,10 +139,10 @@ class Log(private val logsDao: LogDao) {
     )
 
     companion object {
-        private const val TAG = "NtfyLog"
+        private const val TAG = "PonypushLog"
         private const val PRUNE_EVERY = 100
         private const val ENTRIES_MAX = 1000
-        private val IGNORE_TERMS = listOf("ntfy.sh")
+        private val IGNORE_TERMS = listOf("notifications.equestria.dev")
         private val REPLACE_TERMS = listOf(
             "banana", "kiwi", "lemon", "coconut", "avocado", "orange", "apple", "peach",
             "pineapple", "dragonfruit", "durian", "starfruit"
