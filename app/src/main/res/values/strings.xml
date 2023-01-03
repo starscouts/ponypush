@@ -44,7 +44,7 @@
 
     <!-- Main activity: Action mode -->
     <string name="main_action_mode_menu_unsubscribe">Unsubscribe</string>
-    <string name="main_action_mode_delete_dialog_message">"\n        Unsubscribe from the selected channel(s) and\n        permanently delete all notifications?\n    "</string>
+    <string name="main_action_mode_delete_dialog_message">"Unsubscribe from the selected channel(s) and permanently delete all notifications?\n    "</string>
     <string name="main_action_mode_delete_dialog_permanently_delete">Delete permanently</string>
     <string name="main_action_mode_delete_dialog_cancel">Cancel</string>
 
@@ -303,7 +303,7 @@
     <string name="settings_advanced_broadcast_summary_enabled" translatable="false">Apps can access notification content (advanced)</string>
     <string name="settings_advanced_broadcast_summary_disabled" translatable="false">Apps cannot access notification content</string>
     <string name="settings_advanced_record_logs_title">Diagnostics logs</string>
-    <string name="settings_advanced_record_logs_summary_enabled">Logging (up to 1,000 entries) to device …</string>
+    <string name="settings_advanced_record_logs_summary_enabled">Logging (up to 1,000 entries) to device…</string>
     <string name="settings_advanced_record_logs_summary_disabled">Enable recording diagnostics logs to help with technical support.</string>
     <string name="settings_advanced_export_logs_title">Copy logs</string>
     <string name="settings_advanced_export_logs_summary">Copy logs to the clipboard. Channel names can be censored, notifications will never be.</string>
@@ -372,5 +372,16 @@
     <string name="user_dialog_button_save" translatable="false">Save</string>
     <string name="detail_no_notifications_text">Nothing here yet.</string>
 
+    <!-- @ponypush -->
     <!-- Equestria.dev: notification categories -->
+    <string name="category_default">Unknown (%1$s)</string>
+    <string name="category_bits">Bits notifications</string>
+    <string name="category_switch">Switches</string>
+    <string name="category_wakeup">Wake-up alerts</string>
+    <string name="category_pleasure">Pleasure alerts</string>
+    <string name="category_emergency">Emergency alerts</string>
+    <string name="category_delta">Delta change requests</string>
+    <string name="category_travelling">System travelling updates</string>
+    <string name="category_alarm">Automated alarms</string>
+    <string name="category_status">Server status updates</string>
 </resources>

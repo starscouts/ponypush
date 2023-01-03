@@ -1,7 +1,6 @@
 package io.heckel.ntfy.ui
 
 import android.Manifest
-import android.app.AlertDialog
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -23,6 +22,9 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.*
 import androidx.preference.Preference.OnPreferenceClickListener
+import com.google.android.material.color.DynamicColors
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.elevation.SurfaceColors
 import com.google.gson.Gson
 import io.heckel.ntfy.BuildConfig
 import io.heckel.ntfy.R
@@ -57,6 +59,11 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+
+        // @ponypush
+        DynamicColors.applyToActivitiesIfAvailable(application)
+        window.statusBarColor = SurfaceColors.SURFACE_2.getColor(this)
+        window.navigationBarColor = SurfaceColors.SURFACE_0.getColor(this)
 
         Log.d(TAG, "Create $this")
 
@@ -640,17 +647,19 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
         private fun showScrubDialog(title: String) {
             val scrubbed = Log.getScrubTerms()
             val scrubbedText = if (scrubbed.isNotEmpty()) {
-                val scrubTerms = scrubbed.map { e -> "${e.key} -> ${e.value}"}.joinToString(separator = "\n")
+                val scrubTerms =
+                    scrubbed.map { e -> "${e.key} -> ${e.value}" }.joinToString(separator = "\n")
                 getString(R.string.settings_advanced_export_logs_scrub_dialog_text, scrubTerms)
             } else {
                 getString(R.string.settings_advanced_export_logs_scrub_dialog_empty)
             }
-            val dialog = AlertDialog.Builder(activity)
-                .setTitle(title)
-                .setMessage(scrubbedText)
-                .setPositiveButton(R.string.settings_advanced_export_logs_scrub_dialog_button_ok) { _, _ -> /* Nothing */ }
-                .create()
-            dialog.show()
+            activity?.let {
+                MaterialAlertDialogBuilder(it)
+                    .setTitle(title)
+                    .setMessage(scrubbedText)
+                    .setPositiveButton(R.string.settings_advanced_export_logs_scrub_dialog_button_ok) { _, _ -> /* Nothing */ }
+                    .create()
+            }?.show()
         }
 
         private fun deleteLogs() {

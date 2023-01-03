@@ -11,6 +11,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.color.DynamicColors
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.elevation.SurfaceColors
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import io.heckel.ntfy.BuildConfig
@@ -69,6 +72,9 @@ class AddFragment : DialogFragment() {
         if (activity == null) {
             throw IllegalStateException("Activity cannot be null")
         }
+
+        // @ponypush
+        DynamicColors.applyToActivityIfAvailable(requireActivity())
 
         // Dependencies (Fragments need a default constructor)
         repository = Repository.getInstance(requireActivity())
@@ -132,7 +138,7 @@ class AddFragment : DialogFragment() {
         loginPasswordText.addTextChangedListener(loginTextWatcher)
 
         // Build dialog
-        val dialog = AlertDialog.Builder(activity)
+        val dialog = MaterialAlertDialogBuilder(activity!!)
             .setView(view)
             .setPositiveButton(R.string.add_dialog_button_subscribe) { _, _ ->
                 // This will be overridden below to avoid closing the dialog immediately

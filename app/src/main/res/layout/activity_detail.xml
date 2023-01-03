@@ -8,7 +8,6 @@
         tools:context=".ui.DetailActivity"
 >
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            style="@style/CardViewBackground"
             android:id="@+id/detail_notification_list_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -37,14 +36,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" app:srcCompat="@drawable/ic_sms_gray_48dp"
                 android:id="@+id/detail_no_notifications_image"/>
+
         <TextView
-                android:id="@+id/detail_no_notifications_text"
-                android:text="@string/detail_no_notifications_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:padding="10dp" android:gravity="center_horizontal"
-                android:paddingStart="50dp" android:paddingEnd="50dp"/>
+            android:id="@+id/detail_no_notifications_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp"
+            android:text="@string/detail_no_notifications_text"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     </LinearLayout>
 

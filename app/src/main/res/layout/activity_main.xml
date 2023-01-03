@@ -139,7 +139,6 @@
             android:src="@drawable/ic_add_black_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            style="@style/FloatingActionButton"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

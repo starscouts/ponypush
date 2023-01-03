@@ -18,6 +18,8 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.*
 import androidx.preference.Preference.OnPreferenceClickListener
+import com.google.android.material.color.DynamicColors
+import com.google.android.material.elevation.SurfaceColors
 import io.heckel.ntfy.BuildConfig
 import io.heckel.ntfy.R
 import io.heckel.ntfy.db.Repository
@@ -44,6 +46,11 @@ class DetailSettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+
+        // @ponypush
+        DynamicColors.applyToActivitiesIfAvailable(application)
+        window.statusBarColor = SurfaceColors.SURFACE_2.getColor(this)
+        window.navigationBarColor = SurfaceColors.SURFACE_0.getColor(this)
 
         Log.d(TAG, "Create $this")
 

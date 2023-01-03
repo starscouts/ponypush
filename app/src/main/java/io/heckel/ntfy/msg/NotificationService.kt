@@ -89,6 +89,7 @@ class NotificationService(val context: Context) {
     }
 
     private fun displayInternal(subscription: Subscription, notification: Notification, update: Boolean = false) {
+        // @ponypush
         val tags = notification.tags.split(",").map { it.trim() }
 
         val icon = if (tags.contains("bits")) {
@@ -107,6 +108,8 @@ class NotificationService(val context: Context) {
             R.drawable.ic_explore_white_24dp
         } else if (tags.contains("alarm")) {
             R.drawable.ic_av_timer_white_24dp
+        } else if (tags.contains("status")) {
+            R.drawable.ic_dns_white_24dp
         } else {
             R.drawable.ic_notification
         }

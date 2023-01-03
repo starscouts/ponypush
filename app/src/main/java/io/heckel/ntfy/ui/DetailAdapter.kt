@@ -93,6 +93,24 @@ class DetailAdapter(private val activity: Activity, private val lifecycleScope: 
         private val actionsWrapperView: ConstraintLayout = itemView.findViewById(R.id.detail_item_actions_wrapper)
         private val actionsFlow: Flow = itemView.findViewById(R.id.detail_item_actions_flow)
 
+        // @ponypush
+        fun categoryDescription(item: String): String {
+            val context = itemView.context
+
+            return when (item) {
+                "bits" -> context.getString(R.string.category_bits)
+                "switch" -> context.getString(R.string.category_switch)
+                "wakeup" -> context.getString(R.string.category_wakeup)
+                "pleasure" -> context.getString(R.string.category_pleasure)
+                "delta" -> context.getString(R.string.category_delta)
+                "emergency" -> context.getString(R.string.category_emergency)
+                "travelling" -> context.getString(R.string.category_travelling)
+                "alarm" -> context.getString(R.string.category_alarm)
+                "status" -> context.getString(R.string.category_status)
+                else -> context.getString(R.string.category_default, item)
+            }
+        }
+
         fun bind(notification: Notification) {
             this.notification = notification
 
@@ -123,7 +141,7 @@ class DetailAdapter(private val activity: Activity, private val lifecycleScope: 
             }
             if (unmatchedTags.isNotEmpty()) {
                 tagsView.visibility = View.VISIBLE
-                tagsView.text = context.getString(R.string.detail_item_tags, unmatchedTags.joinToString(", "))
+                tagsView.text = context.getString(R.string.detail_item_tags, unmatchedTags.map { categoryDescription(it) }.joinToString(", "))
             } else {
                 tagsView.visibility = View.GONE
             }

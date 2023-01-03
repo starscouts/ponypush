@@ -23,6 +23,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.color.DynamicColors
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.elevation.SurfaceColors
 import com.google.android.material.snackbar.Snackbar
 import io.heckel.ntfy.BuildConfig
 import io.heckel.ntfy.R
@@ -71,6 +74,11 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+
+        // @ponypush
+        DynamicColors.applyToActivitiesIfAvailable(application)
+        window.statusBarColor = SurfaceColors.SURFACE_2.getColor(this)
+        window.navigationBarColor = SurfaceColors.SURFACE_0.getColor(this)
 
         Log.d(TAG, "Create $this")
 
@@ -553,7 +561,7 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
     private fun onClearClick() {
         Log.d(TAG, "Clearing all notifications for ${topicShortUrl(subscriptionBaseUrl, subscriptionTopic)}")
 
-        val builder = AlertDialog.Builder(this)
+        val builder = MaterialAlertDialogBuilder(this)
         val dialog = builder
             .setMessage(R.string.detail_clear_dialog_message)
             .setPositiveButton(R.string.detail_clear_dialog_permanently_delete) { _, _ ->
@@ -585,7 +593,7 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
     private fun onDeleteClick() {
         Log.d(TAG, "Deleting subscription ${topicShortUrl(subscriptionBaseUrl, subscriptionTopic)}")
 
-        val builder = AlertDialog.Builder(this)
+        val builder = MaterialAlertDialogBuilder(this)
         val dialog = builder
             .setMessage(R.string.detail_delete_dialog_message)
             .setPositiveButton(R.string.detail_delete_dialog_permanently_delete) { _, _ ->
@@ -701,7 +709,7 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
     private fun onMultiDeleteClick() {
         Log.d(TAG, "Showing multi-delete dialog for selected items")
 
-        val builder = AlertDialog.Builder(this)
+        val builder = MaterialAlertDialogBuilder(this)
         val dialog = builder
             .setMessage(R.string.detail_action_mode_delete_dialog_message)
             .setPositiveButton(R.string.detail_action_mode_delete_dialog_permanently_delete) { _, _ ->

@@ -9,6 +9,8 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.color.DynamicColors
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import io.heckel.ntfy.R
 import io.heckel.ntfy.db.User
@@ -47,6 +49,9 @@ class UserFragment : DialogFragment() {
             user = User(baseUrl, username, password)
         }
 
+        // @ponypush
+        DynamicColors.applyToActivityIfAvailable(requireActivity())
+
         // Required for validation
         baseUrlsInUse = arguments?.getStringArrayList(BUNDLE_BASE_URLS_IN_USE) ?: arrayListOf()
 
@@ -75,58 +80,68 @@ class UserFragment : DialogFragment() {
         }
 
         // Build dialog
-        val builder = AlertDialog.Builder(activity)
-            .setView(view)
-            .setPositiveButton(positiveButtonTextResId) { _, _ ->
-                saveClicked()
-            }
-            .setNegativeButton(R.string.user_dialog_button_cancel) { _, _ ->
-                // Do nothing
-            }
+        val builder = activity?.let {
+            MaterialAlertDialogBuilder(it)
+                .setView(view)
+                .setPositiveButton(positiveButtonTextResId) { _, _ ->
+                    saveClicked()
+                }
+                .setNegativeButton(R.string.user_dialog_button_cancel) { _, _ ->
+                    // Do nothing
+                }
+        }
         if (user != null) {
-            builder.setNeutralButton(R.string.user_dialog_button_delete)  { _, _ ->
-                if (this::listener.isInitialized) {
-                    listener.onDeleteUser(this, user!!.baseUrl)
+            if (builder != null) {
+                builder.setNeutralButton(R.string.user_dialog_button_delete)  { _, _ ->
+                    if (this::listener.isInitialized) {
+                        listener.onDeleteUser(this, user!!.baseUrl)
+                    }
                 }
             }
         }
-        val dialog = builder.create()
-        dialog.setOnShowListener {
-            positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+        val dialog = builder?.create()
+        if (dialog != null) {
+            dialog.setOnShowListener {
+                if (dialog != null) {
+                    positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                }
 
-            // Delete button should be red
-            if (user != null) {
-                dialog
-                    .getButton(AlertDialog.BUTTON_NEUTRAL)
-                    .dangerButton(requireContext())
-            }
+                // Delete button should be red
+                if (user != null) {
+                    dialog
+                        .getButton(AlertDialog.BUTTON_NEUTRAL)
+                        .dangerButton(requireContext())
+                }
 
-            // Validate input when typing
-            val textWatcher = AfterChangedTextWatcher {
+                // Validate input when typing
+                val textWatcher = AfterChangedTextWatcher {
+                    validateInput()
+                }
+                baseUrlView.addTextChangedListener(textWatcher)
+                usernameView.addTextChangedListener(textWatcher)
+                passwordView.addTextChangedListener(textWatcher)
+
+                // Focus
+                if (user != null) {
+                    usernameView.requestFocus()
+                    if (usernameView.text != null) {
+                        usernameView.setSelection(usernameView.text!!.length)
+                    }
+                } else {
+                    baseUrlView.requestFocus()
+                }
+
+                // Validate now!
                 validateInput()
             }
-            baseUrlView.addTextChangedListener(textWatcher)
-            usernameView.addTextChangedListener(textWatcher)
-            passwordView.addTextChangedListener(textWatcher)
-
-            // Focus
-            if (user != null) {
-                usernameView.requestFocus()
-                if (usernameView.text != null) {
-                    usernameView.setSelection(usernameView.text!!.length)
-                }
-            } else {
-                baseUrlView.requestFocus()
-            }
-
-            // Validate now!
-            validateInput()
         }
 
         // Show keyboard when the dialog is shown (see https://stackoverflow.com/a/19573049/1440785)
-        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
+        if (dialog != null) {
+            dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
+        }
 
-        return dialog
+        return dialog as Dialog
     }
 
     private fun saveClicked() {

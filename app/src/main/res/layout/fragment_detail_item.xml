@@ -35,17 +35,20 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="5dp" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="12dp"/>
+
         <TextView
-                android:layout_width="10dp"
-                android:layout_height="10dp" android:id="@+id/detail_item_new_dot"
-                android:layout_gravity="center"
-                android:background="@drawable/ic_circle"
-                android:gravity="center"
-                app:layout_constraintTop_toTopOf="@+id/detail_item_date_text"
-                app:layout_constraintBottom_toBottomOf="@+id/detail_item_date_text"
-                android:layout_marginTop="1dp"
-                app:layout_constraintStart_toEndOf="@id/detail_item_priority_image"
-                android:layout_marginStart="5dp"/>
+            android:id="@+id/detail_item_new_dot"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/ic_circle"
+            android:backgroundTint="@color/material_dynamic_primary90"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/detail_item_date_text"
+            app:layout_constraintStart_toEndOf="@id/detail_item_priority_image"
+            app:layout_constraintTop_toTopOf="@+id/detail_item_date_text" />
         <ImageButton
                 android:layout_width="28dp"
                 android:layout_height="26dp" app:srcCompat="@drawable/ic_more_horiz_gray_24dp"
