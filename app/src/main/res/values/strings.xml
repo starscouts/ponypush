@@ -375,13 +375,17 @@
     <!-- @ponypush -->
     <!-- Equestria.dev: notification categories -->
     <string name="category_default">Unknown (%1$s)</string>
-    <string name="category_bits">Bits notifications</string>
+    <string name="category_bits">Money tracker</string>
     <string name="category_switch">Switches</string>
     <string name="category_wakeup">Wake-up alerts</string>
     <string name="category_pleasure">Pleasure alerts</string>
     <string name="category_emergency">Emergency alerts</string>
-    <string name="category_delta">Delta change requests</string>
+    <string name="category_delta">Delta kiosk requests</string>
     <string name="category_travelling">System travelling updates</string>
     <string name="category_alarm">Automated alarms</string>
     <string name="category_status">Server status updates</string>
+    <string name="category_genitalia">Self-pleasure alerts</string>
+    <string name="category_debug">Debugging notifications</string>
+    <string name="category_motivation">Motivational messages</string>
+    <string name="category_schedule">Schedule events</string>
 </resources>

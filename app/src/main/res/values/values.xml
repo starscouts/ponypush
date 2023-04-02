@@ -9,7 +9,7 @@
     <string name="app_base_url" translatable="false">https://notifications.equestria.dev</string> <!-- If changed, you must also change google-services.json! -->
 
     <!-- Main activity -->
-    <string name="main_menu_report_bug_url" translatable="false">https://github.com/binwiederhier/ntfy/issues</string>
+    <string name="main_menu_report_bug_url" translatable="false">https://bugs.equestria.dev/issues/PNSH</string>
     <string name="main_menu_docs_url" translatable="false">https://ntfy.sh/docs</string>
     <string name="main_menu_donate_url" translatable="false">https://github.com/sponsors/binwiederhier</string>
 

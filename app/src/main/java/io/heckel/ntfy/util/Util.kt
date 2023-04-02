@@ -65,7 +65,25 @@ fun subscriptionTopicShortUrl(subscription: Subscription) : String {
 }
 
 fun displayName(subscription: Subscription) : String {
-    return subscription.displayName ?: subscription.topic
+    // @ponypush
+    var name = when (subscription.topic) {
+        "main" -> "Main delivery channel"
+        "public-switches" -> "Switch notifications"
+        "public-switches-raindrops" -> "Switch notifications (Raindrops)"
+        "public-switches-cloudburst" -> "Switch notifications (Cloudburst)"
+        "pleasure" -> "Pleasure alerts"
+        "delta" -> "Delta kiosk management"
+        "stargrove" -> "Stargrove notifications"
+        "motivation" -> "Motivational messages"
+        "test" -> "Test channel"
+        else -> "Unknown channel (" + subscription.topic + ")"
+    }
+
+    if (subscription.topic.startsWith("st") && subscription.topic.endsWith("e")) {
+        name = subscription.topic.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } + " notifications"
+    }
+
+    return subscription.displayName ?: name
 }
 
 fun shortUrl(url: String) = url

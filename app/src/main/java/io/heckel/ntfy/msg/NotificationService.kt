@@ -93,23 +93,35 @@ class NotificationService(val context: Context) {
         val tags = notification.tags.split(",").map { it.trim() }
 
         val icon = if (tags.contains("bits")) {
-            R.drawable.ic_toll_white_24dp
+            R.drawable.ic_category_bits
         } else if (tags.contains("switch")) {
-            R.drawable.ic_layers_white_24dp
+            R.drawable.ic_category_switch
         } else if (tags.contains("wakeup")) {
-            R.drawable.ic_bed_white_24dp
+            R.drawable.ic_category_wakeup
         } else if (tags.contains("pleasure")) {
-            R.drawable.ic_play_for_work_white_24dp
+            R.drawable.ic_category_pleasure
         } else if (tags.contains("delta")) {
-            R.drawable.ic_change_history_white_24dp
+            R.drawable.ic_category_delta
         } else if (tags.contains("emergency")) {
-            R.drawable.ic_warning_amber_white_24dp
+            R.drawable.ic_category_emergency
         } else if (tags.contains("travelling")) {
-            R.drawable.ic_explore_white_24dp
+            R.drawable.ic_category_travelling
         } else if (tags.contains("alarm")) {
-            R.drawable.ic_av_timer_white_24dp
+            R.drawable.ic_category_alarm
         } else if (tags.contains("status")) {
-            R.drawable.ic_dns_white_24dp
+            R.drawable.ic_category_status
+        } else if (tags.contains("genitalia")) {
+            R.drawable.ic_category_genitalia
+        } else if (tags.contains("sport")) {
+            R.drawable.ic_category_sport
+        } else if (tags.contains("debug")) {
+            R.drawable.ic_category_debug
+        } else if (tags.contains("motivation")) {
+            R.drawable.ic_category_motivation
+        } else if (tags.contains("schedule")) {
+            R.drawable.ic_category_schedule
+        } else if (tags.contains("equilink")) {
+            R.drawable.ic_category_equilink
         } else {
             R.drawable.ic_notification
         }

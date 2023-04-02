@@ -1,5 +1,6 @@
 package io.heckel.ntfy.msg
 
+import android.util.Base64
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.heckel.ntfy.db.Action
@@ -8,7 +9,9 @@ import io.heckel.ntfy.db.Icon
 import io.heckel.ntfy.db.Notification
 import io.heckel.ntfy.util.joinTags
 import io.heckel.ntfy.util.toPriority
+import java.io.UnsupportedEncodingException
 import java.lang.reflect.Type
+
 
 class NotificationParser {
     private val gson = Gson()
@@ -16,6 +19,28 @@ class NotificationParser {
     fun parse(s: String, subscriptionId: Long = 0, notificationId: Int = 0): Notification? {
         val notificationWithTopic = parseWithTopic(s, subscriptionId = subscriptionId, notificationId = notificationId)
         return notificationWithTopic?.notification
+    }
+
+    private fun decodeBase64(coded: String): String? {
+        var valueDecoded = ByteArray(0)
+        try {
+            valueDecoded = Base64.decode(coded.toByteArray(charset("UTF-8")), Base64.DEFAULT)
+        } catch (e: UnsupportedEncodingException) { }
+        return valueDecoded.toString(Charsets.UTF_8)
+    }
+
+    fun parsePonypush(message: String): String {
+        if (message.contains("(\$PA")) {
+            val parts = message.split("(\$PA")[1].split("\$\$")
+
+            if (parts.count() >= 3) {
+                return decodeBase64(parts[1]) ?: "<invalid>"
+            } else {
+                return "<invalid>"
+            }
+        } else {
+            return message
+        }
     }
 
     fun parseWithTopic(s: String, subscriptionId: Long = 0, notificationId: Int = 0): NotificationWithTopic? {
@@ -55,8 +80,8 @@ class NotificationParser {
             id = message.id,
             subscriptionId = subscriptionId,
             timestamp = message.time,
-            title = message.title ?: "",
-            message = message.message,
+            title = parsePonypush(message.title ?: ""),
+            message = parsePonypush(message.message),
             encoding = message.encoding ?: "",
             priority = toPriority(message.priority),
             tags = joinTags(message.tags),

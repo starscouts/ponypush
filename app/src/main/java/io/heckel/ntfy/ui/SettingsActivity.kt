@@ -542,7 +542,7 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
                 "WebSocket"
             }
 
-            val version = "Ponypush " + BuildConfig.VERSION_NAME + " (ntfy " + BuildConfig.NTFY_VERSION + ", " + type + ")"
+            val version = "Ponypush " + BuildConfig.VERSION_NAME + " (ntfy " + BuildConfig.NTFY_VERSION + ")"
             versionPref?.summary = version
             versionPref?.onPreferenceClickListener = OnPreferenceClickListener {
                 val context = context ?: return@OnPreferenceClickListener false
@@ -575,7 +575,7 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
                 val log = Log.getFormatted(context, scrub = scrub)
                 requireActivity().runOnUiThread {
                     val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                    val clip = ClipData.newPlainText("ntfy logs", log)
+                    val clip = ClipData.newPlainText("Ponypush logs", log)
                     clipboard.setPrimaryClip(clip)
                     if (scrub) {
                         showScrubDialog(getString(R.string.settings_advanced_export_logs_copied_logs))
