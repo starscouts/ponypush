@@ -109,18 +109,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- Broadcast receiver for UnifiedPush; must match https://github.com/UnifiedPush/UP-spec/blob/main/specifications.md -->
-        <receiver
-                android:name=".up.BroadcastReceiver"
-                android:enabled="true"
-                android:exported="true">
-            <intent-filter>
-                <action android:name="org.unifiedpush.android.distributor.REGISTER"/>
-                <action android:name="org.unifiedpush.android.distributor.UNREGISTER"/>
-                <action android:name="org.unifiedpush.android.distributor.feature.BYTES_MESSAGE"/>
-            </intent-filter>
-        </receiver>
-
         <!-- Broadcast receiver for the "Download"/"Cancel" attachment action in the notification popup -->
         <receiver
                 android:name=".msg.NotificationService$UserActionBroadcastReceiver"
