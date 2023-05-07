@@ -103,6 +103,7 @@ class DetailAdapter(private val activity: Activity, private val lifecycleScope: 
                 "wakeup" -> context.getString(R.string.category_wakeup)
                 "pleasure" -> context.getString(R.string.category_pleasure)
                 "delta" -> context.getString(R.string.category_delta)
+                "requests" -> context.getString(R.string.category_requests)
                 "emergency" -> context.getString(R.string.category_emergency)
                 "travelling" -> context.getString(R.string.category_travelling)
                 "alarm" -> context.getString(R.string.category_alarm)

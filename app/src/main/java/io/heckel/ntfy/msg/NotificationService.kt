@@ -102,6 +102,8 @@ class NotificationService(val context: Context) {
             R.drawable.ic_category_pleasure
         } else if (tags.contains("delta")) {
             R.drawable.ic_category_delta
+        } else if (tags.contains("requests")) {
+            R.drawable.ic_category_requests
         } else if (tags.contains("emergency")) {
             R.drawable.ic_category_emergency
         } else if (tags.contains("travelling")) {

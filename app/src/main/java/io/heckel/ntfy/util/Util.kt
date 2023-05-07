@@ -71,7 +71,7 @@ fun getName(topic: String, fallback: String = "Unknown channel ($topic)") : Stri
         "public-switches-raindrops" -> "Switch notifications (Raindrops)"
         "public-switches-cloudburst" -> "Switch notifications (Cloudburst)"
         "pleasure" -> "Pleasure alerts"
-        "delta" -> "Delta kiosk management"
+        "delta" -> "Delta administrator alerts"
         "stargrove" -> "Stargrove notifications"
         "motivation" -> "Motivational messages"
         "test" -> "Test channel"

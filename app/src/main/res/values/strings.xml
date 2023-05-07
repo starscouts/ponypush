@@ -377,10 +377,11 @@
     <string name="category_default">Unknown (%1$s)</string>
     <string name="category_bits">Money tracker</string>
     <string name="category_switch">Switches</string>
+    <string name="category_requests">Delta change requests</string>
     <string name="category_wakeup">Wake-up alerts</string>
     <string name="category_pleasure">Pleasure alerts</string>
     <string name="category_emergency">Emergency alerts</string>
-    <string name="category_delta">Delta kiosk requests</string>
+    <string name="category_delta">Delta Kiosk requests</string>
     <string name="category_travelling">System travelling updates</string>
     <string name="category_alarm">Automated alarms</string>
     <string name="category_status">Server status updates</string>
