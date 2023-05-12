@@ -111,6 +111,7 @@ class DetailAdapter(private val activity: Activity, private val lifecycleScope: 
                 "genitalia" -> context.getString(R.string.category_genitalia)
                 "chdebug" -> context.getString(R.string.category_debug)
                 "debug" -> context.getString(R.string.category_debug)
+                "reminder" -> context.getString(R.string.category_reminder)
                 else -> context.getString(R.string.category_default, item)
             }
         }

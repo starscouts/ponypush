@@ -382,6 +382,7 @@
     <string name="category_pleasure">Pleasure alerts</string>
     <string name="category_emergency">Emergency alerts</string>
     <string name="category_delta">Delta Kiosk requests</string>
+    <string name="category_reminder">Activity reminders</string>
     <string name="category_travelling">System travelling updates</string>
     <string name="category_alarm">Automated alarms</string>
     <string name="category_status">Server status updates</string>

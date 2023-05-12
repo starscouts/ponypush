@@ -14,8 +14,8 @@ android {
         minSdkVersion 27
         targetSdkVersion 33
 
-        versionCode 141
-        versionName "3.1.4"
+        versionCode 142
+        versionName "3.1.5"
         buildConfigField 'String', "NTFY_VERSION", '"1.16.0"'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -30,7 +30,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

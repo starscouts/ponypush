@@ -122,6 +122,8 @@ class NotificationService(val context: Context) {
             R.drawable.ic_category_motivation
         } else if (tags.contains("schedule")) {
             R.drawable.ic_category_schedule
+        } else if (tags.contains("reminder")) {
+            R.drawable.ic_category_reminder
         } else if (tags.contains("equilink")) {
             R.drawable.ic_category_equilink
         } else {
