@@ -11,11 +11,11 @@ android {
 
     defaultConfig {
         applicationId "dev.equestria.notifications"
-        minSdkVersion 27
+        minSdkVersion 28
         targetSdkVersion 33
 
-        versionCode 142
-        versionName "3.1.5"
+        versionCode 145
+        versionName "3.1.8"
         buildConfigField 'String', "NTFY_VERSION", '"1.16.0"'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

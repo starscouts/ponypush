@@ -383,10 +383,10 @@
     <string name="category_emergency">Emergency alerts</string>
     <string name="category_delta">Delta Kiosk requests</string>
     <string name="category_reminder">Activity reminders</string>
+    <string name="category_derpibooru">Derpibooru notifications</string>
     <string name="category_travelling">System travelling updates</string>
     <string name="category_alarm">Automated alarms</string>
     <string name="category_status">Server status updates</string>
-    <string name="category_genitalia">Self-pleasure alerts</string>
     <string name="category_debug">Debugging notifications</string>
     <string name="category_motivation">Motivational messages</string>
     <string name="category_schedule">Schedule events</string>

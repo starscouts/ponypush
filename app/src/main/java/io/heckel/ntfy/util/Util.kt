@@ -65,17 +65,21 @@ fun subscriptionTopicShortUrl(subscription: Subscription) : String {
 }
 
 fun getName(topic: String, fallback: String = "Unknown channel ($topic)") : String {
-    return when (topic) {
-        "main" -> "Main delivery channel"
-        "public-switches" -> "Switch notifications"
-        "public-switches-raindrops" -> "Switch notifications (Raindrops)"
-        "public-switches-cloudburst" -> "Switch notifications (Cloudburst)"
-        "pleasure" -> "Pleasure alerts"
-        "delta" -> "Delta administrator alerts"
-        "stargrove" -> "Stargrove notifications"
-        "motivation" -> "Motivational messages"
-        "test" -> "Test channel"
-        else -> fallback
+    if (topic.startsWith("derpibooru-")) {
+        return "Derpibooru notifications for " + topic.substring(11)
+    } else {
+        return when (topic) {
+            "main" -> "Main delivery channel"
+            "public-switches" -> "Switch notifications"
+            "public-switches-raindrops" -> "Switch notifications (Raindrops)"
+            "public-switches-cloudburst" -> "Switch notifications (Cloudburst)"
+            "pleasure" -> "Pleasure alerts"
+            "delta" -> "Delta administrator alerts"
+            "stargrove" -> "Stargrove notifications"
+            "motivation" -> "Motivational messages"
+            "test" -> "Test channel"
+            else -> fallback
+        }
     }
 }
 

@@ -112,8 +112,6 @@ class NotificationService(val context: Context) {
             R.drawable.ic_category_alarm
         } else if (tags.contains("status")) {
             R.drawable.ic_category_status
-        } else if (tags.contains("genitalia")) {
-            R.drawable.ic_category_genitalia
         } else if (tags.contains("sport")) {
             R.drawable.ic_category_sport
         } else if (tags.contains("debug")) {
@@ -126,6 +124,8 @@ class NotificationService(val context: Context) {
             R.drawable.ic_category_reminder
         } else if (tags.contains("equilink")) {
             R.drawable.ic_category_equilink
+        } else if (tags.contains("derpibooru")) {
+            R.drawable.ic_category_derpibooru
         } else {
             R.drawable.ic_notification
         }
@@ -253,6 +253,9 @@ class NotificationService(val context: Context) {
     }
 
     private fun maybeAddOpenAction(builder: NotificationCompat.Builder, notification: Notification) {
+        // @ponypush - Disabled this because this should NOT be a default and non-configurable
+        return
+
         if (!canOpenAttachment(notification.attachment)) {
             return
         }
@@ -268,6 +271,9 @@ class NotificationService(val context: Context) {
     }
 
     private fun maybeAddBrowseAction(builder: NotificationCompat.Builder, notification: Notification) {
+        // @ponypush - Disabled this because this should NOT be a default and non-configurable
+        return
+
         if (notification.attachment?.contentUri != null) {
             val intent = Intent(android.app.DownloadManager.ACTION_VIEW_DOWNLOADS).apply {
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -278,6 +284,9 @@ class NotificationService(val context: Context) {
     }
 
     private fun maybeAddDownloadAction(builder: NotificationCompat.Builder, notification: Notification) {
+        // @ponypush - Disabled this because this should NOT be a default and non-configurable
+        return
+
         if (notification.attachment?.contentUri == null && listOf(ATTACHMENT_PROGRESS_NONE, ATTACHMENT_PROGRESS_FAILED).contains(notification.attachment?.progress)) {
             val intent = Intent(context, UserActionBroadcastReceiver::class.java).apply {
                 putExtra(BROADCAST_EXTRA_TYPE, BROADCAST_TYPE_DOWNLOAD_START)

@@ -108,10 +108,10 @@ class DetailAdapter(private val activity: Activity, private val lifecycleScope: 
                 "travelling" -> context.getString(R.string.category_travelling)
                 "alarm" -> context.getString(R.string.category_alarm)
                 "status" -> context.getString(R.string.category_status)
-                "genitalia" -> context.getString(R.string.category_genitalia)
                 "chdebug" -> context.getString(R.string.category_debug)
                 "debug" -> context.getString(R.string.category_debug)
                 "reminder" -> context.getString(R.string.category_reminder)
+                "derpibooru" -> context.getString(R.string.category_derpibooru)
                 else -> context.getString(R.string.category_default, item)
             }
         }
