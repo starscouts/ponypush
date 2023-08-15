@@ -93,7 +93,7 @@ class DetailAdapter(private val activity: Activity, private val lifecycleScope: 
         private val actionsWrapperView: ConstraintLayout = itemView.findViewById(R.id.detail_item_actions_wrapper)
         private val actionsFlow: Flow = itemView.findViewById(R.id.detail_item_actions_flow)
 
-        // @ponypush
+        // @ponypush - [START
         fun categoryDescription(item: String): String {
             val context = itemView.context
 
@@ -115,6 +115,7 @@ class DetailAdapter(private val activity: Activity, private val lifecycleScope: 
                 else -> context.getString(R.string.category_default, item)
             }
         }
+        // @ponypush - END]
 
         fun bind(notification: Notification) {
             this.notification = notification
