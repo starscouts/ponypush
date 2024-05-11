@@ -7,6 +7,7 @@ import io.heckel.ntfy.backup.Backuper
 import io.heckel.ntfy.db.Database
 import io.heckel.ntfy.db.LogDao
 import io.heckel.ntfy.db.LogEntry
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -21,6 +22,7 @@ class Log(private val logsDao: LogDao) {
     private val scrubNum: AtomicInteger = AtomicInteger(-1)
     private val scrubTerms = Collections.synchronizedMap(mutableMapOf<String, ReplaceTerm>())
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun log(level: Int, tag: String, message: String, exception: Throwable?) {
         if (!record.get()) return
         GlobalScope.launch(Dispatchers.IO) { // FIXME This does not guarantee the log order

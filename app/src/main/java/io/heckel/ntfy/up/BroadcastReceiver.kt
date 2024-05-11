@@ -8,6 +8,7 @@ import io.heckel.ntfy.db.Repository
 import io.heckel.ntfy.db.Subscription
 import io.heckel.ntfy.service.SubscriberServiceManager
 import io.heckel.ntfy.util.*
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -31,6 +32,7 @@ class BroadcastReceiver : android.content.BroadcastReceiver() {
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun register(context: Context, intent: Intent) {
         val appId = intent.getStringExtra(EXTRA_APPLICATION) ?: return
         val connectorToken = intent.getStringExtra(EXTRA_TOKEN) ?: return
@@ -104,6 +106,7 @@ class BroadcastReceiver : android.content.BroadcastReceiver() {
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun unregister(context: Context, intent: Intent) {
         val connectorToken = intent.getStringExtra(EXTRA_TOKEN) ?: return
         val app = context.applicationContext as Application

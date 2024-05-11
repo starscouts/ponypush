@@ -27,7 +27,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.elevation.SurfaceColors
 import com.google.gson.Gson
 import io.heckel.ntfy.BuildConfig
-import io.heckel.ntfy.R
 import io.heckel.ntfy.backup.Backuper
 import io.heckel.ntfy.db.Repository
 import io.heckel.ntfy.db.User
@@ -41,6 +40,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
+import io.heckel.ntfy.R
 
 /**
  * Main settings
@@ -438,7 +438,7 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
             val backupPrefId = context?.getString(R.string.settings_backup_restore_backup_key) ?: return
             val backup: ListPreference? = findPreference(backupPrefId)
             var backupSelection = BACKUP_EVERYTHING
-            val backupResultLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument()) { uri ->
+            val backupResultLauncher = registerForActivityResult(ActivityResultContracts.CreateDocument("binary/octet-stream")) { uri ->
                 if (uri == null) {
                     return@registerForActivityResult
                 }
@@ -517,7 +517,6 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
             connectionProtocol?.value = repository.getConnectionProtocol()
             connectionProtocol?.preferenceDataStore = object : PreferenceDataStore() {
                 override fun putString(key: String?, value: String?) {
-                    val proto = value ?: repository.getConnectionProtocol()
                     repository.setConnectionProtocol()
                     restartService()
                 }
@@ -535,12 +534,6 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
             // Version
             val versionPrefId = context?.getString(R.string.settings_about_version_key) ?: return
             val versionPref: Preference? = findPreference(versionPrefId)
-
-            val type = if (BuildConfig.FIREBASE_AVAILABLE) {
-                "Firebase Cloud Messaging"
-            } else {
-                "WebSocket"
-            }
 
             val version = "Ponypush " + BuildConfig.VERSION_NAME + " (ntfy " + BuildConfig.NTFY_VERSION + ")"
             versionPref?.summary = version

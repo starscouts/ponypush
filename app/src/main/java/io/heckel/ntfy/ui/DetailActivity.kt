@@ -7,14 +7,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.text.Html
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -33,7 +30,6 @@ import io.heckel.ntfy.app.Application
 import io.heckel.ntfy.db.Notification
 import io.heckel.ntfy.db.Repository
 import io.heckel.ntfy.db.Subscription
-import io.heckel.ntfy.firebase.FirebaseMessenger
 import io.heckel.ntfy.util.Log
 import io.heckel.ntfy.msg.ApiService
 import io.heckel.ntfy.msg.NotificationService
@@ -50,7 +46,6 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
     }
     private val repository by lazy { (application as Application).repository }
     private val api = ApiService()
-    private val messenger = FirebaseMessenger()
     private var notifier: NotificationService? = null // Context-dependent
     private var appBaseUrl: String? = null // Context-dependent
 
@@ -135,12 +130,6 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
                 )
                 repository.addSubscription(subscription)
 
-                // Subscribe to Firebase topic if ntfy.sh (even if instant, just to be sure!)
-                if (baseUrl == appBaseUrl) {
-                    Log.d(TAG, "Subscribing to Firebase topic $topic")
-                    messenger.subscribe(topic)
-                }
-
                 // Fetch cached messages
                 try {
                     val user = repository.getUser(subscription.baseUrl) // May be null
@@ -180,8 +169,6 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
         subscriptionMutedUntil = intent.getLongExtra(MainActivity.EXTRA_SUBSCRIPTION_MUTED_UNTIL, 0L)
 
         // Set title
-        val subscriptionBaseUrl = intent.getStringExtra(MainActivity.EXTRA_SUBSCRIPTION_BASE_URL) ?: return
-        val topicUrl = topicShortUrl(subscriptionBaseUrl, subscriptionTopic)
         title = subscriptionDisplayName
 
         // Swipe to refresh
@@ -282,6 +269,7 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onPause() {
         super.onPause()
         Log.d(TAG, "onPause hook: Removing 'notificationId' from all notifications for $subscriptionId")
@@ -590,6 +578,7 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
         startActivity(intent)
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun onDeleteClick() {
         Log.d(TAG, "Deleting subscription ${topicShortUrl(subscriptionBaseUrl, subscriptionTopic)}")
 
@@ -601,9 +590,6 @@ class DetailActivity : AppCompatActivity(), ActionMode.Callback, NotificationFra
                 GlobalScope.launch(Dispatchers.IO) {
                     repository.removeAllNotifications(subscriptionId)
                     repository.removeSubscription(subscriptionId)
-                    if (subscriptionBaseUrl == appBaseUrl) {
-                        messenger.unsubscribe(subscriptionTopic)
-                    }
                 }
                 finish()
             }

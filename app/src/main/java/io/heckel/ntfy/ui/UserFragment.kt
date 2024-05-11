@@ -102,9 +102,7 @@ class UserFragment : DialogFragment() {
         val dialog = builder?.create()
         if (dialog != null) {
             dialog.setOnShowListener {
-                if (dialog != null) {
-                    positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                }
+                positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
 
                 // Delete button should be red
                 if (user != null) {

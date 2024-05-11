@@ -4,6 +4,7 @@
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/> <!-- For instant delivery foregrounds service -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_REMOTE_MESSAGING"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/> <!-- To keep foreground service awake; soon not needed anymore -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/> <!-- To restart service on reboot -->
     <uses-permission android:name="android.permission.VIBRATE"/> <!-- Incoming notifications should be able to vibrate the phone -->
@@ -33,7 +34,6 @@
         <!-- Main activity -->
         <activity
                 android:name=".ui.MainActivity"
-                android:label="@string/app_launch_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -81,7 +81,7 @@
         </activity>
 
         <!-- Subscriber foreground service for hosts other than ntfy.sh -->
-        <service android:name=".service.SubscriberService"/>
+        <service android:name=".service.SubscriberService" android:foregroundServiceType="remoteMessaging"/>
 
         <!-- Subscriber service restart on reboot -->
         <receiver
@@ -122,21 +122,6 @@
                 android:enabled="true"
                 android:exported="false">
         </receiver>
-
-        <!-- Firebase messaging (note that this is empty in the F-Droid flavor) -->
-        <service
-                android:name=".firebase.FirebaseService"
-                android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-        <meta-data
-                android:name="firebase_analytics_collection_enabled"
-                android:value="false"/>
-        <meta-data
-                android:name="com.google.firebase.messaging.default_notification_icon"
-                android:resource="@drawable/ic_notification"/>
 
         <!-- FileProvider required for older Android versions (<= P), to allow passing the file URI in the open intent.
              Avoids "exposed beyond app through Intent.getData" exception, see see https://stackoverflow.com/a/57288352/1440785 -->

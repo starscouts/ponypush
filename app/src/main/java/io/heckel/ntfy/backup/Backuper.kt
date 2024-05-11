@@ -5,10 +5,8 @@ import android.net.Uri
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.stream.JsonReader
-import io.heckel.ntfy.R
 import io.heckel.ntfy.app.Application
 import io.heckel.ntfy.db.Repository
-import io.heckel.ntfy.firebase.FirebaseMessenger
 import io.heckel.ntfy.msg.NotificationService
 import io.heckel.ntfy.util.Log
 import io.heckel.ntfy.util.topicUrl
@@ -18,7 +16,6 @@ class Backuper(val context: Context) {
     private val gson = Gson()
     private val resolver = context.applicationContext.contentResolver
     private val repository = (context.applicationContext as Application).repository
-    private val messenger = FirebaseMessenger()
     private val notifier = NotificationService(context)
 
     suspend fun backup(uri: Uri, withSettings: Boolean = true, withSubscriptions: Boolean = true, withUsers: Boolean = true) {
@@ -92,7 +89,6 @@ class Backuper(val context: Context) {
         if (subscriptions == null) {
             return
         }
-        val appBaseUrl = context.getString(R.string.app_base_url)
         subscriptions.forEach { s ->
             try {
                 // Add to database
@@ -113,11 +109,6 @@ class Backuper(val context: Context) {
                     displayName = s.displayName,
                 )
                 repository.addSubscription(subscription)
-
-                // Subscribe to Firebase topics
-                if (s.baseUrl == appBaseUrl) {
-                    messenger.subscribe(s.topic)
-                }
 
                 // Create dedicated channels
                 if (s.dedicatedChannels) {

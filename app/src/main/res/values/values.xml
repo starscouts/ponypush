@@ -4,8 +4,7 @@
          The translatable="false" attribute is just an additional safety. -->
 
     <!-- Main app constants -->
-    <string name="app_name" translatable="false">Equestria.dev Ponypush</string>
-    <string name="app_launch_name" translatable="false">Ponypush</string>
+    <string name="app_name" translatable="false">Equestria.dev</string>
     <string name="app_base_url" translatable="false">https://notifications.equestria.dev</string> <!-- If changed, you must also change google-services.json! -->
 
     <!-- Main activity -->

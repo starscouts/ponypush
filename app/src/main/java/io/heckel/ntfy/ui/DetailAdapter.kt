@@ -34,6 +34,7 @@ import io.heckel.ntfy.msg.NotificationService
 import io.heckel.ntfy.msg.NotificationService.Companion.ACTION_VIEW
 import io.heckel.ntfy.util.*
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -466,6 +467,7 @@ class DetailAdapter(private val activity: Activity, private val lifecycleScope: 
             return true
         }
 
+        @OptIn(DelicateCoroutinesApi::class)
         private fun deleteFile(context: Context, notification: Notification, attachment: Attachment): Boolean {
             try {
                 val contentUri = Uri.parse(attachment.contentUri)

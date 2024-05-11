@@ -4,20 +4,16 @@ import android.Manifest
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.AlertDialog
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.text.method.LinkMovementMethod
 import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -32,12 +28,9 @@ import com.google.android.material.color.DynamicColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.elevation.SurfaceColors
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import io.heckel.ntfy.BuildConfig
-import io.heckel.ntfy.R
 import io.heckel.ntfy.app.Application
 import io.heckel.ntfy.db.Repository
 import io.heckel.ntfy.db.Subscription
-import io.heckel.ntfy.firebase.FirebaseMessenger
 import io.heckel.ntfy.msg.ApiService
 import io.heckel.ntfy.msg.DownloadManager
 import io.heckel.ntfy.msg.DownloadType
@@ -53,6 +46,7 @@ import kotlinx.coroutines.launch
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
+import io.heckel.ntfy.R
 
 class MainActivity : AppCompatActivity(), ActionMode.Callback, AddFragment.SubscribeListener, NotificationFragment.NotificationSettingsListener {
     private val viewModel by viewModels<SubscriptionsViewModel> {
@@ -60,7 +54,6 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback, AddFragment.Subsc
     }
     private val repository by lazy { (application as Application).repository }
     private val api = ApiService()
-    private val messenger = FirebaseMessenger()
 
     // UI elements
     private lateinit var menu: Menu
@@ -186,9 +179,6 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback, AddFragment.Subsc
         // Create notification channels right away, so we can configure them immediately after installing the app
         dispatcher?.init()
 
-        // Subscribe to control Firebase channel (so we can re-start the foreground service if it dies)
-        messenger.subscribe(ApiService.CONTROL_TOPIC)
-
         // Darrkkkk mode
         AppCompatDelegate.setDefaultNightMode(repository.getDarkMode())
 
@@ -241,9 +231,9 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback, AddFragment.Subsc
             Log.d(TAG, "Poll worker version matches: choosing KEEP as existing work policy")
             ExistingPeriodicWorkPolicy.KEEP
         } else {
-            Log.d(TAG, "Poll worker version DOES NOT MATCH: choosing REPLACE as existing work policy")
+            Log.d(TAG, "Poll worker version DOES NOT MATCH: choosing UPDATE as existing work policy")
             repository.setPollWorkerVersion(PollWorker.VERSION)
-            ExistingPeriodicWorkPolicy.REPLACE
+            ExistingPeriodicWorkPolicy.UPDATE
         }
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -263,9 +253,9 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback, AddFragment.Subsc
             Log.d(TAG, "Delete worker version matches: choosing KEEP as existing work policy")
             ExistingPeriodicWorkPolicy.KEEP
         } else {
-            Log.d(TAG, "Delete worker version DOES NOT MATCH: choosing REPLACE as existing work policy")
+            Log.d(TAG, "Delete worker version DOES NOT MATCH: choosing UPDATE as existing work policy")
             repository.setDeleteWorkerVersion(DeleteWorker.VERSION)
-            ExistingPeriodicWorkPolicy.REPLACE
+            ExistingPeriodicWorkPolicy.UPDATE
         }
         val work = PeriodicWorkRequestBuilder<DeleteWorker>(DELETE_WORKER_INTERVAL_MINUTES, TimeUnit.MINUTES)
             .addTag(DeleteWorker.TAG)
@@ -281,9 +271,9 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback, AddFragment.Subsc
             Log.d(TAG, "ServiceStartWorker version matches: choosing KEEP as existing work policy")
             ExistingPeriodicWorkPolicy.KEEP
         } else {
-            Log.d(TAG, "ServiceStartWorker version DOES NOT MATCH: choosing REPLACE as existing work policy")
+            Log.d(TAG, "ServiceStartWorker version DOES NOT MATCH: choosing UPDATE as existing work policy")
             repository.setAutoRestartWorkerVersion(SubscriberService.SERVICE_START_WORKER_VERSION)
-            ExistingPeriodicWorkPolicy.REPLACE
+            ExistingPeriodicWorkPolicy.UPDATE
         }
         val work = PeriodicWorkRequestBuilder<SubscriberServiceManager.ServiceStartWorker>(SERVICE_START_WORKER_INTERVAL_MINUTES, TimeUnit.MINUTES)
             .addTag(SubscriberService.TAG)
@@ -428,12 +418,6 @@ class MainActivity : AppCompatActivity(), ActionMode.Callback, AddFragment.Subsc
             lastActive = Date().time/1000
         )
         viewModel.add(subscription)
-
-        // Subscribe to Firebase topic if ntfy.sh (even if instant, just to be sure!)
-        if (baseUrl == appBaseUrl) {
-            Log.d(TAG, "Subscribing to Firebase topic $topic")
-            messenger.subscribe(topic)
-        }
 
         // Fetch cached messages
         lifecycleScope.launch(Dispatchers.IO) {

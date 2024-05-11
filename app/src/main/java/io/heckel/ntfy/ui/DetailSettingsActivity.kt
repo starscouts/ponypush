@@ -21,7 +21,6 @@ import androidx.preference.Preference.OnPreferenceClickListener
 import com.google.android.material.color.DynamicColors
 import com.google.android.material.elevation.SurfaceColors
 import io.heckel.ntfy.BuildConfig
-import io.heckel.ntfy.R
 import io.heckel.ntfy.db.Repository
 import io.heckel.ntfy.db.Subscription
 import io.heckel.ntfy.msg.DownloadAttachmentWorker
@@ -32,6 +31,7 @@ import kotlinx.coroutines.*
 import java.io.File
 import java.io.IOException
 import java.util.*
+import io.heckel.ntfy.R
 
 /**
  * Subscription settings

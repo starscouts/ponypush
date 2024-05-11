@@ -23,6 +23,7 @@ import io.heckel.ntfy.ui.MainActivity
 import io.heckel.ntfy.util.Log
 import io.heckel.ntfy.util.topicUrl
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -138,7 +139,7 @@ class SubscriberService : Service() {
                 }
             }
             wakeLock = null
-            stopForeground(true)
+            stopForeground(STOP_FOREGROUND_REMOVE)
             stopSelf()
         } catch (e: Exception) {
             Log.d(TAG, "Service stopped without being started: ${e.message}")
@@ -148,6 +149,7 @@ class SubscriberService : Service() {
         saveServiceState(this, ServiceState.STOPPED)
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun refreshConnections() {
         GlobalScope.launch(Dispatchers.IO) {
             if (!refreshMutex.tryLock()) {
@@ -251,6 +253,7 @@ class SubscriberService : Service() {
         repository.updateState(subscriptionIds, state)
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun onNotificationReceived(subscription: Subscription, notification: io.heckel.ntfy.db.Notification) {
         // Wakelock while notifications are being dispatched
         // Wakelocks are reference counted by default so that should work neatly here

@@ -22,7 +22,6 @@ import io.heckel.ntfy.ui.DetailActivity
 import io.heckel.ntfy.ui.MainActivity
 import io.heckel.ntfy.util.*
 import java.util.*
-import kotlin.reflect.typeOf
 
 class NotificationService(val context: Context) {
     private val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -146,9 +145,6 @@ class NotificationService(val context: Context) {
         maybeSetDeleteIntent(builder, insistent)
         maybeSetSound(builder, insistent, update)
         maybeSetProgress(builder, notification)
-        maybeAddOpenAction(builder, notification)
-        maybeAddBrowseAction(builder, notification)
-        maybeAddDownloadAction(builder, notification)
         maybeAddCancelAction(builder, notification)
         maybeAddUserActions(builder, notification)
 
@@ -249,51 +245,6 @@ class NotificationService(val context: Context) {
             builder.setProgress(100, progress!!, false)
         } else {
             builder.setProgress(0, 0, false) // Remove progress bar
-        }
-    }
-
-    private fun maybeAddOpenAction(builder: NotificationCompat.Builder, notification: Notification) {
-        // @ponypush - Disabled this because this should NOT be a default and non-configurable
-        return
-
-        if (!canOpenAttachment(notification.attachment)) {
-            return
-        }
-        if (notification.attachment?.contentUri != null) {
-            val contentUri = Uri.parse(notification.attachment.contentUri)
-            val intent = Intent(Intent.ACTION_VIEW, contentUri).apply {
-                setDataAndType(contentUri, notification.attachment.type ?: "application/octet-stream") // Required for Android <= P
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            }
-            val pendingIntent = PendingIntent.getActivity(context, Random().nextInt(), intent, PendingIntent.FLAG_IMMUTABLE)
-            builder.addAction(NotificationCompat.Action.Builder(0, context.getString(R.string.notification_popup_action_open), pendingIntent).build())
-        }
-    }
-
-    private fun maybeAddBrowseAction(builder: NotificationCompat.Builder, notification: Notification) {
-        // @ponypush - Disabled this because this should NOT be a default and non-configurable
-        return
-
-        if (notification.attachment?.contentUri != null) {
-            val intent = Intent(android.app.DownloadManager.ACTION_VIEW_DOWNLOADS).apply {
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-            }
-            val pendingIntent = PendingIntent.getActivity(context, Random().nextInt(), intent, PendingIntent.FLAG_IMMUTABLE)
-            builder.addAction(NotificationCompat.Action.Builder(0, context.getString(R.string.notification_popup_action_browse), pendingIntent).build())
-        }
-    }
-
-    private fun maybeAddDownloadAction(builder: NotificationCompat.Builder, notification: Notification) {
-        // @ponypush - Disabled this because this should NOT be a default and non-configurable
-        return
-
-        if (notification.attachment?.contentUri == null && listOf(ATTACHMENT_PROGRESS_NONE, ATTACHMENT_PROGRESS_FAILED).contains(notification.attachment?.progress)) {
-            val intent = Intent(context, UserActionBroadcastReceiver::class.java).apply {
-                putExtra(BROADCAST_EXTRA_TYPE, BROADCAST_TYPE_DOWNLOAD_START)
-                putExtra(BROADCAST_EXTRA_NOTIFICATION_ID, notification.id)
-            }
-            val pendingIntent = PendingIntent.getBroadcast(context, Random().nextInt(), intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
-            builder.addAction(NotificationCompat.Action.Builder(0, context.getString(R.string.notification_popup_action_download), pendingIntent).build())
         }
     }
 
