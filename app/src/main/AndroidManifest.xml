@@ -34,6 +34,7 @@
         <!-- Main activity -->
         <activity
                 android:name=".ui.MainActivity"
+                android:label="@string/app_launch_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
